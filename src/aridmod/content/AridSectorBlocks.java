@@ -37,14 +37,15 @@ import aridmod.content.*;
 public class AridSectorBlocks {
     public static Block
             // Environment
-            // Ores
-            wallZincOre, wallSiliconOre, groundPalladiumOre, wallPalladiumOre,
     // Floors
-    navystone,
+    navystone, flint, gravel,
     // Walls
-    navystoneWall,
+    navystoneWall, flintWall,
     // Vents
-    navystoneVent;
+    navystoneVent, flintVent,
+    // Ores
+    flintSilicon, wallZincOre, groundPalladiumOre, wallPalladiumOre;
+            // Buildable
     // Turrets
     // Defense
 
@@ -54,11 +55,28 @@ public class AridSectorBlocks {
         navystone = new Floor("navystone"){{
             variants = 3;
         }};
+        flint = new Floor("flint"){{
+            variants = 4;
+        }};
+        gravel = new Floor("gravel"){{
+            variants = 2;
+        }};
         navystoneWall = new StaticWall("navystone-wall"){{
             variants = 2;
+        }};
+        flintWall = new StaticWall("flint-wall"){{
+            variants = 2;
+        }};
+        flintSilicon = new StaticWall("flint-silicon"){{
+            variants = 2;
+            itemDrop = Items.silicon;
         }};
         navystoneVent = new SteamVent("navystone-vent"){{
                 parent = blendGroup = navystone;
                 attributes.set(Attribute.steam, 1f);
+        }};
+        flintVent = new SteamVent("flint-vent"){{
+            parent = blendGroup = flint;
+            attributes.set(Attribute.steam, 1f);
         }};
 }}
