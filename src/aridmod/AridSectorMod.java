@@ -33,6 +33,7 @@ public class AridSectorMod extends Mod{
 
         Log.info("Loading AridSector content.");
         AridSectorBlocks.load();
+        AridSectorPlanets.load();
     }
 
 }
