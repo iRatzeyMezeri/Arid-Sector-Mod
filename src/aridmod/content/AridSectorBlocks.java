@@ -46,7 +46,7 @@ public class AridSectorBlocks {
     // Vents
     navystoneVent, flintVent, clayVent,
     // Ores
-    flintSilicon, wallZincOre, groundPalladiumOre, wallPalladiumOre;
+    flintSilicon, magnesiumWallOre, groundPalladiumOre, wallPalladiumOre;
             // Buildable
     // Turrets
     // Defense
@@ -75,6 +75,10 @@ public class AridSectorBlocks {
         flintSilicon = new StaticWall("flint-silicon"){{
             variants = 2;
             itemDrop = Items.silicon;
+        }};
+        magnesiumWallOre = new OreBlock("magnesium-wall-ore",AridSectorItems.magnesium){{
+            variants = 3;
+            wallOre = true;
         }};
         clayWall = new StaticWall("clay-wall"){{
             variants = 2;
