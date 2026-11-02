@@ -41,6 +41,8 @@ public class AridSectorBlocks {
     navystone, flint, gravel, clay,
     // Walls
     navystoneWall, flintWall, clayWall,
+    // Boulders
+    navystoneBoulder, flintBoulder, clayBoulder,
     // Vents
     navystoneVent, flintVent, clayVent,
     // Ores
@@ -76,6 +78,18 @@ public class AridSectorBlocks {
         }};
         clayWall = new StaticWall("clay-wall"){{
             variants = 2;
+        }};
+        navystoneBoulder = new Prop("navystone-boulder"){{
+            variants = 2;
+            navystone.asFloor().decoration = this;
+        }};
+        flintBoulder = new Prop("flint-boulder"){{
+            variants = 2;
+            flint.asFloor().decoration = this;
+        }};
+        clayBoulder = new Prop("clay-boulder"){{
+            variants = 2;
+            clay.asFloor().decoration = this;
         }};
         navystoneVent = new SteamVent("navystone-vent"){{
                 parent = blendGroup = navystone;
