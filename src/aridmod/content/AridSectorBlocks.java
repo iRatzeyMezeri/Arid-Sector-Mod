@@ -38,11 +38,11 @@ public class AridSectorBlocks {
     public static Block
             // Environment
     // Floors
-    navystone, flint, gravel,
+    navystone, flint, gravel, clay,
     // Walls
-    navystoneWall, flintWall,
+    navystoneWall, flintWall, clayWall,
     // Vents
-    navystoneVent, flintVent,
+    navystoneVent, flintVent, clayVent,
     // Ores
     flintSilicon, wallZincOre, groundPalladiumOre, wallPalladiumOre;
             // Buildable
@@ -61,6 +61,9 @@ public class AridSectorBlocks {
         gravel = new Floor("gravel"){{
             variants = 2;
         }};
+        clay = new Floor("clay"){{
+            variants = 3;
+        }};
         navystoneWall = new StaticWall("navystone-wall"){{
             variants = 2;
         }};
@@ -71,12 +74,19 @@ public class AridSectorBlocks {
             variants = 2;
             itemDrop = Items.silicon;
         }};
+        clayWall = new StaticWall("clay-wall"){{
+            variants = 2;
+        }};
         navystoneVent = new SteamVent("navystone-vent"){{
                 parent = blendGroup = navystone;
                 attributes.set(Attribute.steam, 1f);
         }};
         flintVent = new SteamVent("flint-vent"){{
             parent = blendGroup = flint;
+            attributes.set(Attribute.steam, 1f);
+        }};
+        clayVent = new SteamVent("clay-vent"){{
+            parent = blendGroup = clay;
             attributes.set(Attribute.steam, 1f);
         }};
 }}
