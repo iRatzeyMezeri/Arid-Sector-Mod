@@ -121,7 +121,7 @@ public class AridSectorBlocks {
             itemCapacity = 2000;
             unitCapModifier = 6;
             squareSprite = false;
-            unitType = UnitTypes.evoke;
+            unitType = AridSectorUnitTypes.tenant;
         }};
 
 }}
