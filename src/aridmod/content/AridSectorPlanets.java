@@ -32,8 +32,7 @@ public class AridSectorPlanets {
             clearSectorOnLose = true;
             allowWaves = true;
             prebuildBase = false;
-            // defaultCore = AridSectorBlocks.coreOccupier;
-            defaultCore = Blocks.coreShard;
+            defaultCore = AridSectorBlocks.coreOccupation;
 
             defaultEnv = Env.oxygen | Env.terrestrial;
 

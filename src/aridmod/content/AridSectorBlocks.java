@@ -46,10 +46,12 @@ public class AridSectorBlocks {
     // Vents
     navystoneVent, flintVent, clayVent,
     // Ores
-    flintSilicon, magnesiumWallOre, groundPalladiumOre, wallPalladiumOre;
+    flintSilicon, magnesiumWallOre, groundPalladiumOre, wallPalladiumOre,
             // Buildable
     // Turrets
     // Defense
+    // Effect
+    coreOccupation;
 
 
     public static void load(){
@@ -107,4 +109,19 @@ public class AridSectorBlocks {
             parent = blendGroup = clay;
             attributes.set(Attribute.steam, 1f);
         }};
+        // Effect
+        coreOccupation = new CoreBlock("core-occupation"){{
+            requirements(Category.effect, with(AridSectorItems.itemClay, 800, Items.silicon, 800, AridSectorItems.carapace, 360));
+            alwaysUnlocked = true;
+
+            isFirstTier = true;
+            health = 960;
+            size = 4;
+            absorbLasers = true;
+            itemCapacity = 2000;
+            unitCapModifier = 6;
+            squareSprite = false;
+            unitType = UnitTypes.evoke;
+        }};
+
 }}
