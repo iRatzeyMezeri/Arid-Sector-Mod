@@ -1,16 +1,18 @@
-package example;
+package aridmod;
 
 import arc.*;
 import arc.util.*;
 import mindustry.game.EventType.*;
 import mindustry.mod.*;
 import mindustry.ui.dialogs.*;
+import aridmod.content.*;
 
-public class ExampleJavaMod extends Mod{
+public class AridSectorMod extends Mod{
 
-    public ExampleJavaMod(){
-        Log.info("Loaded ExampleJavaMod constructor.");
+    public AridSectorMod(){
+        Log.info("Loaded AridSectorMod constructor.");
 
+        /*
         //listen for game load event
         Events.on(ClientLoadEvent.class, e -> {
             //show dialog upon startup
@@ -23,11 +25,14 @@ public class ExampleJavaMod extends Mod{
                 dialog.show();
             });
         });
+        */
     }
 
     @Override
     public void loadContent(){
-        Log.info("Loading some example content.");
+
+        Log.info("Loading AridSector content.");
+        AridSectorBlocks.load();
     }
 
 }

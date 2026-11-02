@@ -1,20 +1,20 @@
 #the mod name as displayed in-game
-displayName: "Java Mod Template"
+displayName: "Arid Sector Mod"
 
 #the internal name of your mod
-name: "example-java-mod"
+name: "arid-sector"
 
 #your name
-author: "You"
+author: "InxieNyashi"
 
 #the fully qualified main class of the mod
-main: "example.ExampleJavaMod"
+main: "aridmod.AridSectorMod"
 
 #the mod description as seen in the mod dialog
-description: "A Mindustry Java mod template."
+description: "meow"
 
 #the mod version
-version: 1.0.0
+version: 0.0.1
 
 #the minimum game build required to run this mod
 minGameVersion: 160.3
