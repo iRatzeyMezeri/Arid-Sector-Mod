@@ -38,7 +38,7 @@ public class AridSectorBlocks {
     public static Block
             // Environment
     // Floors
-    navystone, flint, gravel, clay,
+    navystone, flint, gravel, clay, roughClay,
     // Walls
     navystoneWall, flintWall, clayWall,
     // Boulders
@@ -71,6 +71,10 @@ public class AridSectorBlocks {
         }};
         clay = new Floor("clay"){{
             variants = 3;
+        }};
+        roughClay = new Floor("rough-clay"){{
+            variants = 3;
+            itemDrop = AridSectorItems.itemClay;
         }};
         navystoneWall = new StaticWall("navystone-wall"){{
             variants = 2;
