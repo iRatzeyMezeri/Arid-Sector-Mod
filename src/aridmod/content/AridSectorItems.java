@@ -20,7 +20,7 @@ public class AridSectorItems {
             hardness = 1;
             cost = 0.5f;
         }};
-        carapace = new Item("carapace", Color.valueOf("61338f")) {{
+        carapace = new Item("carapace", Color.valueOf("9240b3")) {{
             hardness = 2;
         }};
 
