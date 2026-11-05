@@ -51,7 +51,7 @@ public class AridSectorBlocks {
     // Distribution
     resilientDuct, resilientJunction, resilientRouter, resilientOverflow, resilientUnderflow, resilientBridge, resilientUnloader,
     // Mining
-    hydrocarbonBore,
+    hydrocarbonBore, clayExtractor,
     // Turrets
     // Defense
     // Effect
@@ -197,6 +197,19 @@ public class AridSectorBlocks {
             itemCapacity = 20;
 
             consumeLiquid(Liquids.oil, 2f / 60f);
+        }};
+
+        clayExtractor = new WallCrafter("clay-extractor"){{
+            requirements(Category.production, with(AridSectorItems.itemClay, 25));
+
+            drillTime = 110f;
+            size = 2;
+            attribute = Attribute.get("clay-concentration");
+            output = AridSectorItems.itemClay;
+            fogRadius = 2;
+            researchCost = with(AridSectorItems.itemClay, 25);
+            ambientSound = Sounds.loopDrill;
+            ambientSoundVolume = 0.04f;
         }};
         // Effect
         coreOccupation = new CoreBlock("core-occupation"){{

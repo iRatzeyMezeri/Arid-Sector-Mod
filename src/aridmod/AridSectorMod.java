@@ -32,6 +32,7 @@ public class AridSectorMod extends Mod{
     public void loadContent(){
 
         Log.info("Loading AridSector content.");
+        AridSectorAttributes.load();
         AridSectorUnitTypes.load();
         AridSectorItems.load();
         AridSectorLiquids.load();
