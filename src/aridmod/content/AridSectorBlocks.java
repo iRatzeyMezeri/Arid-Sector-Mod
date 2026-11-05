@@ -48,6 +48,8 @@ public class AridSectorBlocks {
     // Ores
     flintSilicon, magnesiumWallOre, groundPalladiumOre, wallPalladiumOre,
             // Buildable
+    // Distribution
+    resilientDuct, resilientJunction, resilientRouter, resilientOverflow, resilientUnderflow, resilientBridge, resilientUnloader,
     // Mining
     hydrocarbonBore,
     // Turrets
@@ -110,6 +112,72 @@ public class AridSectorBlocks {
         clayVent = new SteamVent("clay-vent"){{
             parent = blendGroup = clay;
             attributes.set(Attribute.steam, 1f);
+        }};
+        // Distribution
+        resilientDuct = new Duct("transport-duct"){{
+            requirements(Category.distribution, with(AridSectorItems.itemClay, 1));
+            health = 50;
+            speed = 3.5f;
+            researchCost = with(AridSectorItems.itemClay, 5);
+            junctionReplacement = resilientJunction;
+            bridgeReplacement = resilientBridge;
+        }};
+
+        resilientJunction = new Junction("resilient-junction"){{
+            requirements(Category.distribution, with(AridSectorItems.itemClay, 3));
+            speed = 40;
+            capacity = 3;
+            health = 20;
+            buildCostMultiplier = 3f;
+            researchCost = with(AridSectorItems.itemClay, 15);
+        }};
+
+        resilientRouter = new DuctRouter("resilient-router"){{
+            requirements(Category.distribution, with(AridSectorItems.itemClay, 10));
+            health = 60;
+            speed = 4f;
+            regionRotated1 = 1;
+            solid = false;
+            buildCostMultiplier = 3f;
+            researchCost = with(AridSectorItems.itemClay, 15);
+        }};
+
+        resilientOverflow = new OverflowDuct("resilient-overflow-duct"){{
+            requirements(Category.distribution, with(AridSectorItems.itemClay, 10, Items.silicon, 2));
+            health = 80;
+            speed = 4f;
+            solid = false;
+            buildCostMultiplier = 3f;
+            researchCost = with(AridSectorItems.itemClay, 30, Items.silicon, 10);
+        }};
+
+        resilientUnderflow = new OverflowDuct("resilient-underflow-duct"){{
+            requirements(Category.distribution, with(AridSectorItems.itemClay, 10, Items.silicon, 2));
+            health = 80;
+            speed = 4f;
+            solid = false;
+            invert = true;
+            buildCostMultiplier = 3f;
+            researchCost = with(AridSectorItems.itemClay, 30, Items.silicon, 10);
+        }};
+
+        resilientBridge = new DuctBridge("resilient-bridge"){{
+            requirements(Category.distribution, with(AridSectorItems.itemClay, 10, Items.silicon, 10));
+            health = 120;
+            speed = 4f;
+            buildCostMultiplier = 3f;
+            researchCost = with(AridSectorItems.itemClay, 30, Items.silicon, 30);
+            crushFragile = true;
+        }};
+
+        resilientUnloader = new DirectionalUnloader("resilient-unloader"){{
+            requirements(Category.distribution, with(Items.silicon, 20, AridSectorItems.magnesium, 10));
+            health = 120;
+            speed = 4f;
+            solid = false;
+            underBullets = true;
+            regionRotated1 = 1;
+            buildCostMultiplier = 3f;
         }};
         // Mining
         hydrocarbonBore = new BeamDrill("hydrocarbon-bore"){{

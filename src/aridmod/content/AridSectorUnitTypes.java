@@ -46,7 +46,7 @@ public class AridSectorUnitTypes {
             flying = true;
             mineSpeed = 3f;
             mineTier = 2;
-            buildSpeed = 1f;
+            buildSpeed = 2f;
             drag = 0.08f;
             speed = 4f;
             rotateSpeed = 7f;
