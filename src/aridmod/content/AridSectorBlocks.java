@@ -129,8 +129,8 @@ public class AridSectorBlocks {
 
         resilientJunction = new Junction("resilient-junction"){{
             requirements(Category.distribution, with(AridSectorItems.itemClay, 3));
-            speed = 40;
-            capacity = 3;
+            speed = 3;
+            capacity = 1;
             health = 20;
             buildCostMultiplier = 3f;
             researchCost = with(AridSectorItems.itemClay, 15);
@@ -202,7 +202,7 @@ public class AridSectorBlocks {
         clayExtractor = new WallCrafter("clay-extractor"){{
             requirements(Category.production, with(AridSectorItems.itemClay, 25));
 
-            drillTime = 110f;
+            drillTime = 350f;
             size = 2;
             attribute = Attribute.get("clay-concentration");
             output = AridSectorItems.itemClay;

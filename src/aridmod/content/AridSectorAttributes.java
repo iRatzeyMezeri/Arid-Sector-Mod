@@ -1,6 +1,7 @@
 package aridmod.content;
 
 import mindustry.content.Blocks;
+import aridmod.content.AridSectorBlocks;
 import mindustry.world.meta.*;
 
 public class AridSectorAttributes {
