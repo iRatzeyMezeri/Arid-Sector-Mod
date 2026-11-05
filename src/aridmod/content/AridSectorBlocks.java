@@ -48,6 +48,8 @@ public class AridSectorBlocks {
     // Ores
     flintSilicon, magnesiumWallOre, groundPalladiumOre, wallPalladiumOre,
             // Buildable
+    // Mining
+    hydrocarbonBore,
     // Turrets
     // Defense
     // Effect
@@ -108,6 +110,21 @@ public class AridSectorBlocks {
         clayVent = new SteamVent("clay-vent"){{
             parent = blendGroup = clay;
             attributes.set(Attribute.steam, 1f);
+        }};
+        // Mining
+        hydrocarbonBore = new BeamDrill("hydrocarbon-bore"){{
+            requirements(Category.production, with(AridSectorItems.itemClay, 40, AridSectorItems.magnesium, 15));
+            consumePower(0.5f);
+            drillTime = 320f;
+
+            tier = 3;
+            size = 3;
+            range = 6;
+            fogRadius = 4;
+            laserWidth = 0.7f;
+            itemCapacity = 20;
+
+            consumeLiquid(Liquids.oil, 2f / 60f);
         }};
         // Effect
         coreOccupation = new CoreBlock("core-occupation"){{
