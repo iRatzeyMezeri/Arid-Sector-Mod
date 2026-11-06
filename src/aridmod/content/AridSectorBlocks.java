@@ -51,7 +51,7 @@ public class AridSectorBlocks {
     // Distribution
     resilientDuct, resilientJunction, resilientRouter, resilientOverflow, resilientUnderflow, resilientBridge, resilientUnloader,
     // Mining
-    hydrocarbonBore, clayExtractor,
+    clayGrinder, hydrocarbonBore, clayExtractor,
     // Turrets
     // Defense
     // Effect
@@ -182,8 +182,16 @@ public class AridSectorBlocks {
             underBullets = true;
             regionRotated1 = 1;
             buildCostMultiplier = 3f;
+            squareSprite = false;
         }};
         // Mining
+        clayGrinder = new Drill("clay-grinder"){{
+            requirements(Category.production, with(AridSectorItems.itemClay, 8));
+            tier = 1;
+            drillTime = 300;
+            size = 2;
+            researchCost = with(AridSectorItems.itemClay, 8);
+        }};
         hydrocarbonBore = new BeamDrill("hydrocarbon-bore"){{
             requirements(Category.production, with(AridSectorItems.itemClay, 40, AridSectorItems.magnesium, 15));
             consumePower(0.5f);
