@@ -7,12 +7,12 @@ import mindustry.type.*;
 
 public class AridSectorItems {
     public static Item
-            magnesium, itemClay, carapace;
+            aluminium, itemClay, carapace;
 
     public static final Seq<Item> aridsectorItems = new Seq<>();
 
     public static void load() {
-        magnesium = new Item("magnesium", Color.valueOf("32a899")) {{
+        aluminium = new Item("magnesium", Color.valueOf("32a899")) {{
             hardness = 2;
             cost = 0.5f;
         }};
@@ -25,7 +25,7 @@ public class AridSectorItems {
         }};
 
         aridsectorItems.addAll(
-                magnesium, itemClay, carapace
+                aluminium, itemClay, carapace
         );
     }
 }

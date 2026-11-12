@@ -38,15 +38,15 @@ public class AridSectorBlocks {
     public static Block
             // Environment
     // Floors
-    navystone, flint, gravel, clay, roughClay,
+    navystone, flint, gravel, clay, roughClay, clumpSoil, decayedSand,
     // Walls
-    navystoneWall, flintWall, clayWall,
+    navystoneWall, flintWall, clayWall, clumpSoilWall, decayedSandWall,
     // Boulders
-    navystoneBoulder, flintBoulder, clayBoulder,
+    navystoneBoulder, flintBoulder, clayBoulder, clumpSoilBoulder, siliconRemains,
     // Vents
     navystoneVent, flintVent, clayVent,
     // Ores
-    flintSilicon, magnesiumWallOre, groundPalladiumOre, wallPalladiumOre,
+    flintSilicon, soilSilicon, aluminiumWallOre, groundPalladiumOre, wallPalladiumOre,
             // Buildable
     // Distribution
     resilientDuct, resilientJunction, resilientRouter, resilientOverflow, resilientUnderflow, resilientBridge, resilientUnloader,
@@ -76,6 +76,12 @@ public class AridSectorBlocks {
             variants = 3;
             itemDrop = AridSectorItems.itemClay;
         }};
+        clumpSoil = new Floor("clump-soil"){{
+            variants = 3;
+        }};
+        decayedSand = new Floor("decayed-sand"){{
+            variants = 3;
+        }};
         navystoneWall = new StaticWall("navystone-wall"){{
             variants = 2;
         }};
@@ -86,11 +92,21 @@ public class AridSectorBlocks {
             variants = 2;
             itemDrop = Items.silicon;
         }};
-        magnesiumWallOre = new OreBlock("magnesium-wall-ore",AridSectorItems.magnesium){{
+        aluminiumWallOre = new OreBlock("magnesium-wall-ore",AridSectorItems.aluminium){{
             variants = 3;
             wallOre = true;
         }};
         clayWall = new StaticWall("clay-wall"){{
+            variants = 2;
+        }};
+        clumpSoilWall = new StaticWall("clump-soil-wall"){{
+            variants = 2;
+        }};
+        soilSilicon = new StaticWall("soil-silicon"){{
+            variants = 2;
+            itemDrop = Items.silicon;
+        }};
+        decayedSandWall = new StaticWall("decayed-sand-wall"){{
             variants = 2;
         }};
         navystoneBoulder = new Prop("navystone-boulder"){{
@@ -175,7 +191,7 @@ public class AridSectorBlocks {
         }};
 
         resilientUnloader = new DirectionalUnloader("resilient-unloader"){{
-            requirements(Category.distribution, with(Items.silicon, 20, AridSectorItems.magnesium, 10));
+            requirements(Category.distribution, with(Items.silicon, 20, AridSectorItems.aluminium, 10));
             health = 120;
             speed = 4f;
             solid = false;
@@ -193,7 +209,7 @@ public class AridSectorBlocks {
             researchCost = with(AridSectorItems.itemClay, 8);
         }};
         hydrocarbonBore = new BeamDrill("hydrocarbon-bore"){{
-            requirements(Category.production, with(AridSectorItems.itemClay, 40, AridSectorItems.magnesium, 15));
+            requirements(Category.production, with(AridSectorItems.itemClay, 40, AridSectorItems.aluminium, 15));
             consumePower(0.5f);
             drillTime = 320f;
 
