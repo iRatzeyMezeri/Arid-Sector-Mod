@@ -188,7 +188,7 @@ public class AridSectorBlocks {
         clayGrinder = new Drill("clay-grinder"){{
             requirements(Category.production, with(AridSectorItems.itemClay, 8));
             tier = 1;
-            drillTime = 300;
+            drillTime = 900;
             size = 2;
             researchCost = with(AridSectorItems.itemClay, 8);
         }};
