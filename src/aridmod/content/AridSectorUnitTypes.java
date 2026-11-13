@@ -28,11 +28,52 @@ import aridmod.*;
 public class AridSectorUnitTypes {
 
     public static UnitType
-
+            //Walker
+            serf,
             //Core
             tenant;
 
     public static void load() {
+        serf = new UnitType("serf"){{
+            researchCostMultiplier = 0.5f;
+            speed = 0.6f;
+            hitSize = 7f;
+            health = 220;
+            stepSoundVolume = 0.4f;
+            outlineColor = Color.valueOf("1f1c24");
+            range = 120f;
+
+            weapons.add(new Weapon("serf-laser-rifle"){{
+                reload = 18f;
+                x = 3.5f;
+                y = 0.5f;
+                top = false;
+                shootSound = Sounds.shootLocus;
+                shootY = 6f;
+                recoil = 2f;
+                mirror = true;
+                faceTarget = true;
+                outlineColor = Color.valueOf("1f1c24");
+
+                bullet = new ShrapnelBulletType(){{
+                    length = 120f;
+                    damage = 20f;
+                    width = 2f;
+                    serrationLenScl = 2f;
+                    serrationSpaceOffset = 6f;
+                    serrationFadeOffset = 0f;
+                    serrations = 2;
+                    serrationWidth = 3f;
+                    fromColor = Color.valueOf("8dd9cb");
+                    toColor = Color.valueOf("50b2aa");
+                    shootEffect = smokeEffect = Fx.sparkShoot;
+                    hitColor = Color.valueOf("50b2aa");
+                    hitEffect = Fx.hitBulletColor;
+                    pierceDamageFactor = 0.8f;
+                }};
+            }});
+        }};
+
         tenant = new ErekirUnitType("tenant") {{
             coreUnitDock = true;
 
