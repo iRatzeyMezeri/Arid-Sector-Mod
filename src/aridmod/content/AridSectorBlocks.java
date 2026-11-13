@@ -243,9 +243,7 @@ public class AridSectorBlocks {
             ambientSound = Sounds.loopHum;
             ambientSoundVolume = 0.06f;
 
-            drawer = new DrawMulti(new DrawDefault(), new DrawRegion("-top"), new DrawBlurSpin("-rotator", 0.6f * 9f){{
-                blurThresh = 0.01f;
-            }});
+            drawer = new DrawMulti(new DrawDefault(), new DrawBlurSpin("-rotator", 0.6f * 9f){{blurThresh = 0.01f;}},  new DrawRegion("-top"));
 
             hasLiquids = false;
             fogRadius = 3;
@@ -260,7 +258,7 @@ public class AridSectorBlocks {
             baseEfficiency = 0f;
             displayEfficiency = false;
             craftEffect = Fx.turbinegenerate;
-            drawer = new DrawMulti(new DrawRegion("-top"),new DrawBlurSpin("-rotator", 6f), new DrawDefault());
+            drawer = new DrawMulti( new DrawDefault(), new DrawBlurSpin("-rotator", 6f), new DrawRegion("-top"));
             craftTime = 120f;
             size = 3;
             ambientSound = Sounds.loopHum;
