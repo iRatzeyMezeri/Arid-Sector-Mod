@@ -36,29 +36,32 @@ public class AridSectorUnitTypes {
     public static void load() {
         serf = new UnitType("serf"){{
             researchCostMultiplier = 0.5f;
+            constructor = MechUnit::create;
             speed = 0.6f;
             hitSize = 7f;
             health = 220;
             stepSoundVolume = 0.4f;
             outlineColor = Color.valueOf("1f1c24");
-            range = 120f;
+            range = 90f;
 
-            weapons.add(new Weapon("serf-laser-rifle"){{
-                reload = 18f;
-                x = 3.5f;
+            weapons.add(new Weapon("arid-sector-serf-laser-rifle"){{
+                reload = 36f;
+                x = 4f;
                 y = 0.5f;
+                layerOffset = -0.0001f;
                 top = false;
-                shootSound = Sounds.shootLocus;
+                shootSound = Sounds.shootAvert;
                 shootY = 6f;
                 recoil = 2f;
+                alternate = false;
                 mirror = true;
                 faceTarget = true;
                 outlineColor = Color.valueOf("1f1c24");
 
                 bullet = new ShrapnelBulletType(){{
-                    length = 120f;
-                    damage = 20f;
-                    width = 2f;
+                    length = 90f;
+                    damage = 12f;
+                    width = 3f;
                     serrationLenScl = 2f;
                     serrationSpaceOffset = 6f;
                     serrationFadeOffset = 0f;
