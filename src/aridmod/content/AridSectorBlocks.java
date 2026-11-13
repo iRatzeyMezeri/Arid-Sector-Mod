@@ -219,7 +219,7 @@ public class AridSectorBlocks {
         clayExtractor = new WallCrafter("clay-extractor"){{
             requirements(Category.production, with(AridSectorItems.itemClay, 25));
 
-            drillTime = 350f;
+            drillTime = 250f;
             size = 2;
             attribute = Attribute.get("clay-concentration");
             output = AridSectorItems.itemClay;
