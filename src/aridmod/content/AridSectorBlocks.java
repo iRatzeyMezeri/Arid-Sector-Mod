@@ -1,38 +1,17 @@
 package aridmod.content;
 
-import arc.graphics.*;
-import arc.graphics.g2d.*;
-import arc.math.*;
-import arc.math.geom.*;
-import arc.struct.*;
 import mindustry.content.*;
-import mindustry.entities.*;
-import mindustry.entities.bullet.*;
-import mindustry.entities.effect.*;
-import mindustry.entities.part.*;
-import mindustry.entities.pattern.*;
 import mindustry.gen.*;
-import mindustry.graphics.*;
 import mindustry.type.*;
-import mindustry.type.unit.MissileUnitType;
 import mindustry.world.*;
-import mindustry.world.blocks.defense.*;
-import mindustry.world.blocks.defense.turrets.*;
 import mindustry.world.blocks.distribution.*;
 import mindustry.world.blocks.environment.*;
-import mindustry.world.blocks.heat.*;
-import mindustry.world.blocks.liquid.*;
-import mindustry.world.blocks.logic.*;
-import mindustry.world.blocks.payloads.*;
 import mindustry.world.blocks.power.*;
 import mindustry.world.blocks.production.*;
 import mindustry.world.blocks.storage.*;
-import mindustry.world.blocks.units.*;
-import mindustry.world.consumers.*;
 import mindustry.world.draw.*;
 import mindustry.world.meta.*;
 import static mindustry.type.ItemStack.*;
-import aridmod.content.*;
 
 public class AridSectorBlocks {
     public static Block
@@ -46,13 +25,19 @@ public class AridSectorBlocks {
     // Vents
     navystoneVent, flintVent, clayVent,
     // Ores
-    flintSilicon, soilSilicon, aluminiumWallOre, groundPalladiumOre, wallPalladiumOre,
+    flintSilicon, soilSilicon, aluminiumWallOre, groundCobaltOre, wallCobaltOre,
             // Buildable
     // Distribution
     resilientDuct, resilientJunction, resilientRouter, resilientOverflow, resilientUnderflow, resilientBridge, resilientUnloader,
     // Mining
     clayGrinder, hydrocarbonBore, clayExtractor,
+    // Power
+    ventDelver,
+    // Liquid
+    ventRig,
     // Turrets
+    amp, atmos, centigrade, hertz,
+    // Units
     // Defense
     // Effect
     coreOccupation;
@@ -120,6 +105,14 @@ public class AridSectorBlocks {
         clayBoulder = new Prop("clay-boulder"){{
             variants = 2;
             clay.asFloor().decoration = this;
+        }};
+        clumpSoilBoulder = new Prop("clump-soil-boulder"){{
+            variants = 2;
+            clumpSoil.asFloor().decoration = this;
+        }};
+        siliconRemains = new Prop("silicon-remains"){{
+            variants = 2;
+            decayedSand.asFloor().decoration = this;
         }};
         navystoneVent = new SteamVent("navystone-vent"){{
                 parent = blendGroup = navystone;
@@ -235,6 +228,52 @@ public class AridSectorBlocks {
             ambientSound = Sounds.loopDrill;
             ambientSoundVolume = 0.04f;
         }};
+        // Power
+        ventDelver = new ThermalGenerator("vent-delver"){{
+            requirements(Category.power, with(AridSectorItems.itemClay, 30, AridSectorItems.aluminium, 8));
+            attribute = Attribute.steam;
+            group = BlockGroup.liquids;
+            displayEfficiencyScale = 1f / 9f;
+            minEfficiency = 9f - 0.0001f;
+            powerProduction = 2f / 9f;
+            displayEfficiency = false;
+            generateEffect = Fx.turbinegenerate;
+            effectChance = 0.04f;
+            size = 3;
+            ambientSound = Sounds.loopHum;
+            ambientSoundVolume = 0.06f;
+
+            drawer = new DrawMulti(new DrawDefault(), new DrawRegion("-top"), new DrawBlurSpin("-rotator", 0.6f * 9f){{
+                blurThresh = 0.01f;
+            }});
+
+            hasLiquids = false;
+            fogRadius = 3;
+            researchCost = with(AridSectorItems.itemClay, 30, AridSectorItems.aluminium, 8);
+        }};
+        // Liquid
+        ventRig = new AttributeCrafter("vent-rig"){{
+            requirements(Category.liquid, with(AridSectorItems.itemClay, 30, Items.silicon, 8));
+            attribute = Attribute.steam;
+            group = BlockGroup.liquids;
+            minEfficiency = 9f - 0.0001f;
+            baseEfficiency = 0f;
+            displayEfficiency = false;
+            craftEffect = Fx.turbinegenerate;
+            drawer = new DrawMulti(new DrawRegion("-top"),new DrawBlurSpin("-rotator", 6f), new DrawDefault());
+            craftTime = 120f;
+            size = 3;
+            ambientSound = Sounds.loopHum;
+            ambientSoundVolume = 0.06f;
+            hasLiquids = true;
+            boostScale = 1f / 9f;
+            itemCapacity = 0;
+            outputLiquid = new LiquidStack(Liquids.oil, 12f / 60f);
+            liquidCapacity = 60f;
+        }};
+        // Turrets
+        // Units
+        // Defense
         // Effect
         coreOccupation = new CoreBlock("core-occupation"){{
             requirements(Category.effect, with(AridSectorItems.itemClay, 800, Items.silicon, 800, AridSectorItems.carapace, 360));
