@@ -17,13 +17,13 @@ public class AridSectorBlocks {
     public static Block
             // Environment
     // Floors
-    navystone, flint, gravel, clay, roughClay, clumpSoil, decayedSand,
+    navystone, flint, gravel, clay, roughClay, clumpSoil, decayedSand, decayedDust,
     // Walls
     navystoneWall, flintWall, clayWall, clumpSoilWall, decayedSandWall,
     // Boulders
     navystoneBoulder, flintBoulder, clayBoulder, clumpSoilBoulder, siliconRemains,
     // Vents
-    navystoneVent, flintVent, clayVent,
+    navystoneVent, flintVent, clayVent, decayedVent,
     // Ores
     flintSilicon, soilSilicon, aluminiumWallOre, groundCobaltOre, wallCobaltOre,
             // Buildable
@@ -65,6 +65,9 @@ public class AridSectorBlocks {
             variants = 3;
         }};
         decayedSand = new Floor("decayed-sand"){{
+            variants = 3;
+        }};
+        decayedDust = new Floor("decayed-dust"){{
             variants = 3;
         }};
         navystoneWall = new StaticWall("navystone-wall"){{
@@ -113,6 +116,7 @@ public class AridSectorBlocks {
         siliconRemains = new Prop("silicon-remains"){{
             variants = 2;
             decayedSand.asFloor().decoration = this;
+            decayedDust.asFloor().decoration = this;
         }};
         navystoneVent = new SteamVent("navystone-vent"){{
                 parent = blendGroup = navystone;
@@ -124,6 +128,10 @@ public class AridSectorBlocks {
         }};
         clayVent = new SteamVent("clay-vent"){{
             parent = blendGroup = clay;
+            attributes.set(Attribute.steam, 1f);
+        }};
+        decayedVent = new SteamVent("decayed-vent"){{
+            parent = blendGroup = decayedDust;
             attributes.set(Attribute.steam, 1f);
         }};
         // Distribution
