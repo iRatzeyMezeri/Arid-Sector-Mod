@@ -13,6 +13,7 @@ import mindustry.gen.*;
 import mindustry.graphics.*;
 import mindustry.type.*;
 import mindustry.world.*;
+import mindustry.world.blocks.defense.*;
 import mindustry.world.blocks.defense.turrets.*;
 import mindustry.world.blocks.distribution.*;
 import mindustry.world.blocks.environment.*;
@@ -53,6 +54,7 @@ public class AridSectorBlocks {
     amp, atmos, centigrade, hertz,
     // Units
     // Defense
+    brittleWall, largeBrittleWall, carapaceWall, largeCarapaceWall,
     // Effect
     coreOccupation;
 
@@ -512,6 +514,25 @@ public class AridSectorBlocks {
         }};
         // Units
         // Defense
+        brittleWall = new Wall("brittle-wall"){{
+            requirements(Category.defense, with(AridSectorItems.itemClay, 8));
+            health = 60;
+            variants = 5;
+        }};
+        largeBrittleWall = new Wall("large-brittle-wall"){{
+            requirements(Category.defense, with(AridSectorItems.itemClay, 32));
+            health = 240;
+            size = 2;
+        }};
+        carapaceWall = new Wall("carapace-wall"){{
+            requirements(Category.defense, with(AridSectorItems.carapace, 4));
+            health = 140;
+        }};
+        largeCarapaceWall = new Wall("large-carapace-wall"){{
+            requirements(Category.defense, with(AridSectorItems.carapace, 16));
+            health = 520;
+            size = 2;
+        }};
         // Effect
         coreOccupation = new CoreBlock("core-occupation"){{
             requirements(Category.effect, with(AridSectorItems.itemClay, 800, Items.silicon, 800, AridSectorItems.carapace, 360));
