@@ -288,12 +288,11 @@ public class AridSectorBlocks {
         }};
         // Turrets
         amp = new ItemTurret("amp"){{
-            requirements(Category.turret, with(AridSectorItems.aluminium, 80, Items.silicon, 120));
-            buildCostMultiplier = 0.5f;
+            requirements(Category.turret, with(AridSectorItems.aluminium, 80, AridSectorItems.itemClay, 60, Items.silicon, 120));
             Effect sfe = new MultiEffect(Fx.shootBigColor, Fx.colorSparkBig);
 
             ammo(
-                    AridSectorItems.aluminium, new BasicBulletType(6f, 35){{
+                    AridSectorItems.aluminium, new BasicBulletType(6f, 25){{
                         width = 9f;
                         hitSize = 7f;
                         height = 14f;
