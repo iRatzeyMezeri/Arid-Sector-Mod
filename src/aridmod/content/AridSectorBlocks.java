@@ -1,14 +1,23 @@
 package aridmod.content;
 
+import arc.graphics.*;
 import mindustry.content.*;
+import mindustry.entities.Effect;
+import mindustry.entities.bullet.*;
+import mindustry.entities.effect.*;
+import mindustry.entities.part.*;
+import mindustry.entities.pattern.*;
 import mindustry.gen.*;
+import mindustry.graphics.Pal;
 import mindustry.type.*;
 import mindustry.world.*;
+import mindustry.world.blocks.defense.turrets.*;
 import mindustry.world.blocks.distribution.*;
 import mindustry.world.blocks.environment.*;
 import mindustry.world.blocks.power.*;
 import mindustry.world.blocks.production.*;
 import mindustry.world.blocks.storage.*;
+import mindustry.world.consumers.*;
 import mindustry.world.draw.*;
 import mindustry.world.meta.*;
 import static mindustry.type.ItemStack.*;
@@ -278,6 +287,96 @@ public class AridSectorBlocks {
             liquidCapacity = 60f;
         }};
         // Turrets
+        amp = new ItemTurret("amp"){{
+            requirements(Category.turret, with(AridSectorItems.aluminium, 80, Items.silicon, 120));
+            buildCostMultiplier = 0.5f;
+            Effect sfe = new MultiEffect(Fx.shootBigColor, Fx.colorSparkBig);
+
+            ammo(
+                    AridSectorItems.aluminium, new BasicBulletType(6f, 35){{
+                        width = 9f;
+                        hitSize = 7f;
+                        height = 14f;
+                        lifetime = 20f;
+                        shootEffect = sfe;
+                        smokeEffect = Fx.shootBigSmoke;
+                        ammoMultiplier = 1;
+                        pierceCap = 3;
+                        pierce = true;
+                        pierceBuilding = true;
+                        hitColor = backColor = trailColor = Color.valueOf("8dd9cb");
+                        frontColor = Color.white;
+                        trailWidth = 1.5f;
+                        trailLength = 5;
+                        hitEffect = despawnEffect = Fx.hitBulletColor;
+                        buildingDamageMultiplier = 0.3f;
+                        fragBullets = 2;
+                        fragAngle = 90;
+                        fragOnHit = true;
+                        fragOnAbsorb = true;
+                        fragBullet = new LightningBulletType(){{
+                                damage = 7;
+                                lightningLength = 5;
+                                collidesAir = true;
+                                buildingDamageMultiplier = 0.4f;
+                                pierceCap = 5;
+
+                                lightningType = new BulletType(0.0001f, 0f) {{
+                                    lifetime = Fx.lightning.lifetime;
+                                    hitEffect = despawnEffect = Fx.hitBulletColor;
+                                    status = StatusEffects.shocked;
+                                    hittable = false;
+                                    lightColor = Color.valueOf("8dd9cb");
+                                    collidesAir = true;
+                                    buildingDamageMultiplier = 0.4f;
+                                    shieldDamageMultiplier = 0.2f;
+                                }};
+                        }};
+                    }}
+            );
+
+            coolantMultiplier = 15f;
+            shootSound = Sounds.shootLancer;
+
+            targetUnderBlocks = false;
+            shake = 1f;
+            ammoPerShot = 2;
+            shoot = new ShootBarrel(){{
+                barrels = new float[]{
+                        -3, 5f, 0,
+                        3, 5f, 0
+                };
+                shots = 2;
+            }};
+            drawer = new DrawTurret("resilient-"){{
+                parts.addAll(
+                        new RegionPart("-barrel"){{
+                            progress = PartProgress.recoil;
+                            under = false;
+                            moveY = -1.25f;
+                            heatProgress = PartProgress.heat;
+                            heatColor = Pal.turretHeat;
+                        }},
+                        new RegionPart("-blade"){{
+                            progress = PartProgress.warmup;
+                            under = false;
+                            moveRot = 12f;
+                            mirror = true;
+                        }}
+                );
+            }};
+            shootY = -2;
+            outlineColor = Color.valueOf("1f1c24");
+            size = 3;
+            reload = 70f;
+            recoil = 2f;
+            range = 120;
+            health = 520;
+            rotateSpeed = 1.5f;
+            researchCostMultiplier = 0.05f;
+
+            coolant = consume(new ConsumeLiquid(Liquids.water, 15f / 60f));
+        }};
         // Units
         // Defense
         // Effect

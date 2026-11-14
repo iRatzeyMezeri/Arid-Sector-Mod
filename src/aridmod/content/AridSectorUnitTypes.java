@@ -39,7 +39,7 @@ public class AridSectorUnitTypes {
             constructor = MechUnit::create;
             speed = 0.6f;
             hitSize = 7f;
-            health = 220;
+            health = 360;
             stepSoundVolume = 0.4f;
             outlineColor = Color.valueOf("1f1c24");
             range = 90f;
