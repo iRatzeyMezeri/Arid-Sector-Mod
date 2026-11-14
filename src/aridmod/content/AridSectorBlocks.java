@@ -1,6 +1,8 @@
 package aridmod.content;
 
 import arc.graphics.*;
+import arc.graphics.g2d.*;
+import arc.math.*;
 import mindustry.content.*;
 import mindustry.entities.Effect;
 import mindustry.entities.bullet.*;
@@ -8,7 +10,7 @@ import mindustry.entities.effect.*;
 import mindustry.entities.part.*;
 import mindustry.entities.pattern.*;
 import mindustry.gen.*;
-import mindustry.graphics.Pal;
+import mindustry.graphics.*;
 import mindustry.type.*;
 import mindustry.world.*;
 import mindustry.world.blocks.defense.turrets.*;
@@ -20,6 +22,9 @@ import mindustry.world.blocks.storage.*;
 import mindustry.world.consumers.*;
 import mindustry.world.draw.*;
 import mindustry.world.meta.*;
+
+import static arc.graphics.g2d.Draw.*;
+import static arc.graphics.g2d.Lines.*;
 import static mindustry.type.ItemStack.*;
 
 public class AridSectorBlocks {
@@ -364,7 +369,6 @@ public class AridSectorBlocks {
                         }}
                 );
             }};
-            shootY = -2;
             outlineColor = Color.valueOf("1f1c24");
             size = 3;
             reload = 70f;
@@ -373,6 +377,136 @@ public class AridSectorBlocks {
             health = 520;
             rotateSpeed = 1.5f;
             researchCostMultiplier = 0.05f;
+
+            coolant = consume(new ConsumeLiquid(Liquids.water, 15f / 60f));
+        }};
+
+        atmos = new ItemTurret("atmos"){{
+            requirements(Category.turret, with(AridSectorItems.carapace, 80, Items.silicon, 160));
+            Effect sfe = new MultiEffect(Fx.shootSmokeSquare);
+            ammo(
+                    Items.silicon, new ArtilleryBulletType(3f, 12){{
+                        width = 12f;
+                        hitSize = 12f;
+                        height = 18f;
+                        lifetime = 52f;
+                        shootEffect = sfe;
+                        homingPower = 0.05f;
+                        homingRange = 80f;
+                        smokeEffect = Fx.shootBigSmoke;
+                        ammoMultiplier = 1;
+                        collidesAir = false;
+                        pierce = false;
+                        hitColor = backColor = trailColor = Color.valueOf("474a5c");
+                        frontColor = Color.valueOf("767a84");
+                        trailWidth = 3f;
+                        trailLength = 10;
+                        splashDamage = 96;
+                        splashDamageRadius = 36;
+                        hitEffect = despawnEffect = new MultiEffect(
+                                new Effect(50f, 100f, e -> {
+                                    float rad = splashDamageRadius;
+                                    Color ecol = frontColor;
+                                    e.scaled(7f, b -> {
+                                        color(ecol, b.fout());
+                                        Fill.circle(e.x, e.y, rad);
+                                    });
+
+                                    color(ecol);
+                                    stroke(e.fout() * 3f);
+                                    Lines.circle(e.x, e.y, rad);
+
+                                    int points = 3;
+                                    for(int i = 0; i < points; i++){
+                                        float angle = i* 360f / points;
+                                        //for(int s : Mathf.zeroOne){
+                                        Drawf.tri(e.x + Angles.trnsx(angle, rad), e.y + Angles.trnsy(angle, rad), 6f, 6f * e.fout(), angle/* + s*180f*/);
+                                        //}
+                                    }
+
+                                    Fill.circle(e.x, e.y, 12f * e.fout());
+                                    color();
+                                    Fill.circle(e.x, e.y, 6f * e.fout());
+                                    Drawf.light(e.x, e.y, rad * 1.6f, ecol, e.fout());
+                                }),
+                                Fx.hitBulletColor
+                        );
+                        buildingDamageMultiplier = 0.3f;
+                        hitSound = despawnSound = Sounds.explosionPlasmaSmall;
+                    }},
+                    AridSectorItems.carapace, new ArtilleryBulletType(3f, 20){{
+                        width = 12f;
+                        hitSize = 12f;
+                        height = 18f;
+                        lifetime = 60f;
+                        rangeChange = 24f;
+                        shootEffect = sfe;
+                        smokeEffect = Fx.shootBigSmoke;
+                        ammoMultiplier = 1;
+                        pierce = false;
+                        hitColor = backColor = trailColor = Color.valueOf("9240b3");
+                        frontColor = Color.valueOf("bb4ecc");
+                        trailWidth = 3f;
+                        trailLength = 10;
+                        splashDamage = 134;
+                        collidesAir = false;
+                        splashDamageRadius = 24;
+                        hitEffect = despawnEffect = new MultiEffect(
+                                new Effect(50f, 100f, e -> {
+                                    float rad = splashDamageRadius;
+                                    Color ecol = frontColor;
+                                    e.scaled(7f, b -> {
+                                        color(ecol, b.fout());
+                                        Fill.circle(e.x, e.y, rad);
+                                    });
+
+                                    color(ecol);
+                                    stroke(e.fout() * 3f);
+                                    Lines.circle(e.x, e.y, rad);
+
+                                    int points = 3;
+                                    for(int i = 0; i < points; i++){
+                                        float angle = i* 360f / points;
+                                        //for(int s : Mathf.zeroOne){
+                                        Drawf.tri(e.x + Angles.trnsx(angle, rad), e.y + Angles.trnsy(angle, rad), 6f, 6f * e.fout(), angle/* + s*180f*/);
+                                        //}
+                                    }
+
+                                    Fill.circle(e.x, e.y, 12f * e.fout());
+                                    color();
+                                    Fill.circle(e.x, e.y, 6f * e.fout());
+                                    Drawf.light(e.x, e.y, rad * 1.6f, ecol, e.fout());
+                                }),
+                                Fx.hitBulletColor
+                        );
+                        buildingDamageMultiplier = 0.3f;
+                        hitSound = despawnSound = Sounds.explosionPlasmaSmall;
+                    }}
+            );
+
+            coolantMultiplier = 15f;
+            shootSound = Sounds.door;
+            shake = 1f;
+            ammoPerShot = 3;
+            drawer = new DrawTurret("resilient-"){{
+                parts.addAll(
+                        new RegionPart("-side"){{
+                            progress = PartProgress.warmup;
+                            under = true;
+                            moveY = 3f;
+                            mirror = true;
+                        }}
+                );
+            }};
+            shootY = -4;
+            outlineColor = Color.valueOf("1f1c24");
+            size = 3;
+            reload = 70f;
+            recoil = 2f;
+            range = 156;
+            health = 520;
+            rotateSpeed = 1.2f;
+            targetAir = false;
 
             coolant = consume(new ConsumeLiquid(Liquids.water, 15f / 60f));
         }};

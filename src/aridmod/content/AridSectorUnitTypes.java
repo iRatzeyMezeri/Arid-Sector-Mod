@@ -119,8 +119,8 @@ public class AridSectorUnitTypes {
                 rotate = false;
                 shootY = 0f;
                 beamWidth = 0.7f;
-                repairSpeed = 3.5f;
-                fractionRepairSpeed = 0.06f;
+                repairSpeed = 0.5f;
+                fractionRepairSpeed = 0.02f;
                 aimDst = 0f;
                 shootCone = 15f;
                 mirror = true;
