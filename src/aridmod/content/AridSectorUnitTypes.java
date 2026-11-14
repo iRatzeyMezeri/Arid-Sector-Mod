@@ -30,6 +30,8 @@ public class AridSectorUnitTypes {
     public static UnitType
             //Walker
             serf,
+            //Hover
+            pioneer,
             //Core
             tenant;
 
@@ -38,6 +40,7 @@ public class AridSectorUnitTypes {
             researchCostMultiplier = 0.5f;
             constructor = MechUnit::create;
             speed = 0.6f;
+            armor = 3;
             hitSize = 7f;
             health = 360;
             stepSoundVolume = 0.4f;
@@ -60,7 +63,7 @@ public class AridSectorUnitTypes {
 
                 bullet = new ShrapnelBulletType(){{
                     length = 90f;
-                    damage = 12f;
+                    damage = 14f;
                     width = 3f;
                     serrationLenScl = 2f;
                     serrationSpaceOffset = 6f;
@@ -75,6 +78,87 @@ public class AridSectorUnitTypes {
                     pierceDamageFactor = 0.8f;
                 }};
             }});
+        }};
+
+        pioneer = new ErekirUnitType("pioneer"){{
+            constructor = ElevationMoveUnit::create;
+            researchCostMultiplier = 0.5f;
+            accel = 0.09f;
+            drag = 0.09f;
+            speed = 1.6f;
+            rotateSpeed = 3f;
+            canDrown = false;
+            shadowElevation = 0.1f;
+            moveSound = Sounds.loopExtract;
+            moveSoundVolume = 0.25f;
+            moveSoundPitchMin = 0.7f;
+            moveSoundPitchMax = 1.5f;
+            hitSize = 7f;
+            health = 80;
+            hovering = true;
+            flying = false;
+            outlineColor = Color.valueOf("1f1c24");
+            range = 12f;
+            faceTarget = true;
+            fogRadius = 120f;
+
+            abilities.add(new MoveEffectAbility(0f, -7f, Color.valueOf("d57fe2"), Fx.missileTrailShort, 4f){{
+                teamColor = false;
+            }});
+
+            parts.addAll(
+                    new HoverPart(){{
+                        x = 3f;
+                        y = 1f;
+                        mirror = true;
+                        radius = 6f;
+                        phase = 90f;
+                        stroke = 2f;
+                        layerOffset = -0.001f;
+                        color = Color.valueOf("d57fe2");
+                    }},
+                    new HoverPart(){{
+                        x = 0f;
+                        y = -3f;
+                        mirror = false;
+                        radius = 6f;
+                        phase = 90f;
+                        stroke = 2f;
+                        layerOffset = -0.001f;
+                        color = Color.valueOf("d57fe2");
+                    }}
+            );
+
+            weapons.add(new Weapon(" "){{
+                reload = 30f;
+                y = 0f;
+                x = 0f;
+                shootSound = Sounds.shootAlpha;
+                shootY = 4f;
+                shootX = 0f;
+                mirror = false;
+                faceTarget = true;
+
+                bullet = new ShrapnelBulletType(){{
+                    length = 16f;
+                    shootEffect = hitEffect = despawnEffect =  new WaveEffect(){{
+                        sizeFrom = 4f;
+                        sizeTo = 0f;
+                        colorFrom = lightColor = Color.valueOf("d57fe2");
+                        colorTo = Color.valueOf("9240b3");
+                    }};
+                    damage = 12f;
+                    width = 4f;
+                    serrations = 0;
+                    layerOffset = -0.001f;
+                    fromColor = Color.valueOf("d57fe2");
+                    toColor = Color.valueOf("9240b3");
+                    hitColor = Color.valueOf("d57fe2");
+                    hitEffect = Fx.hitBulletColor;
+                    pierce = false;
+                }};
+            }});
+
         }};
 
         tenant = new ErekirUnitType("tenant") {{
