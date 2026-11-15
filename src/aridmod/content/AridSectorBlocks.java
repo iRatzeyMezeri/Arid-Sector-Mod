@@ -43,7 +43,7 @@ public class AridSectorBlocks {
     flintSilicon, soilSilicon, aluminiumWallOre, groundCobaltOre, wallCobaltOre,
             // Buildable
     // Distribution
-    resilientDuct, resilientJunction, resilientRouter, resilientOverflow, resilientUnderflow, resilientBridge, resilientUnloader,
+    basicRoadway, roadwayJunction, roadwayRouter, roadwayOverflow, roadwayUnderflow, roadwayBridge, roadwayUnloader,
     // Mining
     clayGrinder, hydrocarbonBore, clayExtractor,
     // Power
@@ -151,17 +151,14 @@ public class AridSectorBlocks {
             attributes.set(Attribute.steam, 1f);
         }};
         // Distribution
-        resilientDuct = new Duct("transport-duct"){{
-            requirements(Category.distribution, with(AridSectorItems.itemClay, 1));
-            health = 50;
-            speed = 3.5f;
-            researchCost = with(AridSectorItems.itemClay, 5);
-            junctionReplacement = resilientJunction;
-            bridgeReplacement = resilientBridge;
+        basicRoadway = new StackConveyor("basic-roadway"){{
+            requirements(Category.distribution, with(AridSectorItems.itemClay, 2));
+            health = 40;
+            speed = 4f / 60f;
+            itemCapacity = 4;
         }};
-
-        resilientJunction = new Junction("resilient-junction"){{
-            requirements(Category.distribution, with(AridSectorItems.itemClay, 3));
+        roadwayJunction = new Junction("roadway-junction"){{
+            requirements(Category.distribution, with(AridSectorItems.itemClay, 4, Items.silicon, 2));
             speed = 3;
             capacity = 1;
             health = 20;
@@ -169,8 +166,8 @@ public class AridSectorBlocks {
             researchCost = with(AridSectorItems.itemClay, 15);
         }};
 
-        resilientRouter = new DuctRouter("resilient-router"){{
-            requirements(Category.distribution, with(AridSectorItems.itemClay, 10));
+        roadwayRouter = new DuctRouter("roadway-router"){{
+            requirements(Category.distribution, with(AridSectorItems.itemClay, 10, Items.silicon, 4));
             health = 60;
             speed = 4f;
             regionRotated1 = 1;
@@ -179,8 +176,8 @@ public class AridSectorBlocks {
             researchCost = with(AridSectorItems.itemClay, 15);
         }};
 
-        resilientOverflow = new OverflowDuct("resilient-overflow-duct"){{
-            requirements(Category.distribution, with(AridSectorItems.itemClay, 10, Items.silicon, 2));
+        roadwayOverflow = new OverflowDuct("overflow-roadway"){{
+            requirements(Category.distribution, with(AridSectorItems.itemClay, 10, Items.silicon, 4));
             health = 80;
             speed = 4f;
             solid = false;
@@ -188,8 +185,8 @@ public class AridSectorBlocks {
             researchCost = with(AridSectorItems.itemClay, 30, Items.silicon, 10);
         }};
 
-        resilientUnderflow = new OverflowDuct("resilient-underflow-duct"){{
-            requirements(Category.distribution, with(AridSectorItems.itemClay, 10, Items.silicon, 2));
+        roadwayUnderflow = new OverflowDuct("underflow-roadway"){{
+            requirements(Category.distribution, with(AridSectorItems.itemClay, 10, Items.silicon, 4));
             health = 80;
             speed = 4f;
             solid = false;
@@ -198,7 +195,7 @@ public class AridSectorBlocks {
             researchCost = with(AridSectorItems.itemClay, 30, Items.silicon, 10);
         }};
 
-        resilientBridge = new DuctBridge("resilient-bridge"){{
+        roadwayBridge = new DuctBridge("roadway-bridge"){{
             requirements(Category.distribution, with(AridSectorItems.itemClay, 10, Items.silicon, 10));
             health = 120;
             speed = 4f;
@@ -207,7 +204,7 @@ public class AridSectorBlocks {
             crushFragile = true;
         }};
 
-        resilientUnloader = new DirectionalUnloader("resilient-unloader"){{
+        roadwayUnloader = new DirectionalUnloader("roadway-unloader"){{
             requirements(Category.distribution, with(Items.silicon, 20, AridSectorItems.aluminium, 10));
             health = 120;
             speed = 4f;
@@ -221,7 +218,7 @@ public class AridSectorBlocks {
         clayGrinder = new Drill("clay-grinder"){{
             requirements(Category.production, with(AridSectorItems.itemClay, 8));
             tier = 1;
-            drillTime = 900;
+            drillTime = 1200;
             size = 2;
             researchCost = with(AridSectorItems.itemClay, 8);
         }};
@@ -243,7 +240,7 @@ public class AridSectorBlocks {
         clayExtractor = new WallCrafter("clay-extractor"){{
             requirements(Category.production, with(AridSectorItems.itemClay, 25));
 
-            drillTime = 250f;
+            drillTime = 480f;
             size = 2;
             attribute = Attribute.get("clay-concentration");
             output = AridSectorItems.itemClay;
@@ -354,7 +351,7 @@ public class AridSectorBlocks {
                 };
                 shots = 2;
             }};
-            drawer = new DrawTurret("resilient-"){{
+            drawer = new DrawTurret("roadway-"){{
                 parts.addAll(
                         new RegionPart("-barrel"){{
                             progress = PartProgress.recoil;
@@ -490,7 +487,7 @@ public class AridSectorBlocks {
             shootSound = Sounds.door;
             shake = 1f;
             ammoPerShot = 3;
-            drawer = new DrawTurret("resilient-"){{
+            drawer = new DrawTurret("roadway-"){{
                 parts.addAll(
                         new RegionPart("-side"){{
                             progress = PartProgress.warmup;
