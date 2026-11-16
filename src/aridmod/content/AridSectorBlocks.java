@@ -4,7 +4,7 @@ import arc.graphics.*;
 import arc.graphics.g2d.*;
 import arc.math.*;
 import mindustry.content.*;
-import mindustry.entities.Effect;
+import mindustry.entities.*;
 import mindustry.entities.bullet.*;
 import mindustry.entities.effect.*;
 import mindustry.entities.part.*;
@@ -534,7 +534,6 @@ public class AridSectorBlocks {
         coreOccupation = new CoreBlock("core-occupation"){{
             requirements(Category.effect, with(AridSectorItems.itemClay, 800, Items.silicon, 800, AridSectorItems.carapace, 360));
             alwaysUnlocked = true;
-
             isFirstTier = true;
             health = 960;
             size = 4;
