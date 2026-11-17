@@ -3,6 +3,7 @@ package aridmod.content;
 import arc.graphics.*;
 import arc.graphics.g2d.*;
 import arc.math.*;
+import aridmod.ASPal;
 import mindustry.content.*;
 import mindustry.entities.*;
 import mindustry.entities.bullet.*;
@@ -372,7 +373,7 @@ public class AridSectorBlocks {
                         pierceCap = 3;
                         pierce = true;
                         pierceBuilding = true;
-                        hitColor = backColor = trailColor = Color.valueOf("8dd9cb");
+                        hitColor = backColor = trailColor = ASPal.electricLM;
                         frontColor = Color.white;
                         trailWidth = 1.5f;
                         trailLength = 5;
@@ -394,7 +395,7 @@ public class AridSectorBlocks {
                                     hitEffect = despawnEffect = Fx.hitBulletColor;
                                     status = StatusEffects.shocked;
                                     hittable = false;
-                                    lightColor = Color.valueOf("8dd9cb");
+                                    lightColor = ASPal.electricLM;
                                     collidesAir = true;
                                     buildingDamageMultiplier = 0.4f;
                                     shieldDamageMultiplier = 0.2f;
@@ -411,8 +412,8 @@ public class AridSectorBlocks {
             ammoPerShot = 2;
             shoot = new ShootBarrel(){{
                 barrels = new float[]{
-                        -3, -2f, 0,
-                        3, -2f, 0
+                        -3, -3f, 0,
+                        3, -3f, 0
                 };
                 shots = 2;
             }};
@@ -433,7 +434,7 @@ public class AridSectorBlocks {
                         }}
                 );
             }};
-            outlineColor = Color.valueOf("1f1c24");
+            outlineColor = ASPal.resilientD;
             size = 3;
             reload = 70f;
             recoil = 2f;
@@ -508,8 +509,8 @@ public class AridSectorBlocks {
                         smokeEffect = Fx.shootBigSmoke;
                         ammoMultiplier = 1;
                         pierce = false;
-                        hitColor = backColor = trailColor = Color.valueOf("9240b3");
-                        frontColor = Color.valueOf("bb4ecc");
+                        hitColor = backColor = trailColor = ASPal.biomaterialLM;
+                        frontColor = ASPal.biomaterialL;
                         trailWidth = 3f;
                         trailLength = 10;
                         splashDamage = 134;
@@ -563,7 +564,7 @@ public class AridSectorBlocks {
                 );
             }};
             shootY = -4;
-            outlineColor = Color.valueOf("1f1c24");
+            outlineColor = ASPal.resilientD;
             size = 3;
             reload = 70f;
             recoil = 2f;
@@ -588,7 +589,7 @@ public class AridSectorBlocks {
             craftEffect = Fx.circleColorSpark;
             updateEffect = Fx.smeltsmoke;
             drawer = new DrawMulti(new DrawRegion("-bottom"),
-                    new DrawBubbles(Color.valueOf("9240b3")){{
+                    new DrawBubbles(ASPal.biomaterialM){{
                         sides = 10;
                         recurrence = 3f;
                         spread = 6;
@@ -597,7 +598,7 @@ public class AridSectorBlocks {
                     }},
                     new DrawDefault(),
                     new DrawGlowRegion("-glow"){{
-                        color = Color.valueOf("d57fe2");
+                        color = ASPal.biomaterialX;
                         alpha = 0.5f;
                         glowIntensity = 0.3f;
                         glowScale = 6f;

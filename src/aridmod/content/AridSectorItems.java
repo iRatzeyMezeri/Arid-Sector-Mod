@@ -2,6 +2,7 @@ package aridmod.content;
 
 import arc.graphics.*;
 import arc.struct.*;
+import aridmod.ASPal;
 import mindustry.content.Items;
 import mindustry.type.*;
 
@@ -12,15 +13,15 @@ public class AridSectorItems {
     public static final Seq<Item> aridsectorItems = new Seq<>();
 
     public static void load() {
-        aluminium = new Item("magnesium", Color.valueOf("32a899")) {{
+        aluminium = new Item("magnesium", ASPal.electricLM) {{
             hardness = 2;
             cost = 0.5f;
         }};
-        itemClay = new Item("item-clay", Color.valueOf("704036")) {{
+        itemClay = new Item("item-clay", ASPal.earthlyLM) {{
             hardness = 1;
             cost = 0.5f;
         }};
-        carapace = new Item("carapace", Color.valueOf("9240b3")) {{
+        carapace = new Item("carapace", ASPal.biomaterialLM) {{
             hardness = 2;
         }};
 

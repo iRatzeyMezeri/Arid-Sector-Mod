@@ -24,6 +24,7 @@ import mindustry.type.*;
 import mindustry.type.unit.ErekirUnitType;
 import mindustry.type.weapons.*;
 import aridmod.*;
+import aridmod.ASPal.*;
 
 public class AridSectorUnitTypes {
 
@@ -44,7 +45,7 @@ public class AridSectorUnitTypes {
             hitSize = 7f;
             health = 360;
             stepSoundVolume = 0.4f;
-            outlineColor = Color.valueOf("1f1c24");
+            outlineColor = ASPal.resilientD;
             range = 90f;
 
             weapons.add(new Weapon("arid-sector-serf-laser-rifle"){{
@@ -59,7 +60,7 @@ public class AridSectorUnitTypes {
                 alternate = false;
                 mirror = true;
                 faceTarget = true;
-                outlineColor = Color.valueOf("1f1c24");
+                outlineColor = ASPal.resilientD;
 
                 bullet = new ShrapnelBulletType(){{
                     length = 90f;
@@ -70,10 +71,10 @@ public class AridSectorUnitTypes {
                     serrationFadeOffset = 0f;
                     serrations = 2;
                     serrationWidth = 3f;
-                    fromColor = Color.valueOf("8dd9cb");
-                    toColor = Color.valueOf("50b2aa");
+                    fromColor = ASPal.electricLM;
+                    toColor = ASPal.electricM;
                     shootEffect = smokeEffect = Fx.sparkShoot;
-                    hitColor = Color.valueOf("50b2aa");
+                    hitColor = ASPal.electricM;
                     hitEffect = Fx.hitBulletColor;
                     pierceDamageFactor = 0.8f;
                 }};
@@ -97,12 +98,12 @@ public class AridSectorUnitTypes {
             health = 80;
             hovering = true;
             flying = false;
-            outlineColor = Color.valueOf("1f1c24");
+            outlineColor = ASPal.resilientD;
             range = 12f;
             faceTarget = true;
             fogRadius = 120f;
 
-            abilities.add(new MoveEffectAbility(0f, -7f, Color.valueOf("d57fe2"), Fx.missileTrailShort, 4f){{
+            abilities.add(new MoveEffectAbility(0f, -7f, ASPal.biomaterialX, Fx.missileTrailShort, 4f){{
                 teamColor = false;
             }});
 
@@ -115,7 +116,7 @@ public class AridSectorUnitTypes {
                         phase = 90f;
                         stroke = 2f;
                         layerOffset = -0.001f;
-                        color = Color.valueOf("d57fe2");
+                        color = ASPal.biomaterialX;
                     }},
                     new HoverPart(){{
                         x = 0f;
@@ -125,7 +126,7 @@ public class AridSectorUnitTypes {
                         phase = 90f;
                         stroke = 2f;
                         layerOffset = -0.001f;
-                        color = Color.valueOf("d57fe2");
+                        color = ASPal.biomaterialX;
                     }}
             );
 
@@ -144,16 +145,16 @@ public class AridSectorUnitTypes {
                     shootEffect = hitEffect = despawnEffect =  new WaveEffect(){{
                         sizeFrom = 4f;
                         sizeTo = 0f;
-                        colorFrom = lightColor = Color.valueOf("d57fe2");
-                        colorTo = Color.valueOf("9240b3");
+                        colorFrom = lightColor = ASPal.biomaterialX;
+                        colorTo = ASPal.biomaterialLM;
                     }};
                     damage = 12f;
                     width = 4f;
                     serrations = 0;
                     layerOffset = -0.001f;
-                    fromColor = Color.valueOf("d57fe2");
-                    toColor = Color.valueOf("9240b3");
-                    hitColor = Color.valueOf("d57fe2");
+                    fromColor = ASPal.biomaterialX;
+                    toColor = ASPal.biomaterialLM;
+                    hitColor = ASPal.biomaterialX;
                     hitEffect = Fx.hitBulletColor;
                     pierce = false;
                 }};
@@ -184,7 +185,7 @@ public class AridSectorUnitTypes {
             armor = 1f;
             hitSize = 8f;
             engineSize = 0;
-            outlineColor = Color.valueOf("0d0d0f");
+            outlineColor = ASPal.resilientD;
 
             fogRadius = 0f;
             targetable = true;
