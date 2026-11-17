@@ -17,6 +17,7 @@ import mindustry.world.blocks.defense.*;
 import mindustry.world.blocks.defense.turrets.*;
 import mindustry.world.blocks.distribution.*;
 import mindustry.world.blocks.environment.*;
+import mindustry.world.blocks.liquid.*;
 import mindustry.world.blocks.power.*;
 import mindustry.world.blocks.production.*;
 import mindustry.world.blocks.storage.*;
@@ -47,9 +48,9 @@ public class AridSectorBlocks {
     // Mining
     clayGrinder, hydrocarbonBore, clayExtractor,
     // Power
-    ventDelver,
+    ventDelver, aluminiumNode, aluminiumBattery, aluminiumDiode,
     // Liquid
-    ventRig,
+    ventRig, drainway, drainwayJunction, drainwayRouter, drainwayBridge,
     // Turrets
     amp, atmos, centigrade, hertz,
     // Units
@@ -159,7 +160,7 @@ public class AridSectorBlocks {
         }};
         roadwayJunction = new Junction("roadway-junction"){{
             requirements(Category.distribution, with(AridSectorItems.itemClay, 4, Items.silicon, 2));
-            speed = 3;
+            speed = 4.5f;
             capacity = 1;
             health = 20;
             buildCostMultiplier = 3f;
@@ -169,7 +170,7 @@ public class AridSectorBlocks {
         roadwayRouter = new DuctRouter("roadway-router"){{
             requirements(Category.distribution, with(AridSectorItems.itemClay, 10, Items.silicon, 4));
             health = 60;
-            speed = 4f;
+            speed = 3f;
             regionRotated1 = 1;
             solid = false;
             buildCostMultiplier = 3f;
@@ -198,7 +199,7 @@ public class AridSectorBlocks {
         roadwayBridge = new DuctBridge("roadway-bridge"){{
             requirements(Category.distribution, with(AridSectorItems.itemClay, 10, Items.silicon, 10));
             health = 120;
-            speed = 4f;
+            speed = 7f;
             buildCostMultiplier = 3f;
             researchCost = with(AridSectorItems.itemClay, 30, Items.silicon, 30);
             crushFragile = true;
@@ -270,6 +271,23 @@ public class AridSectorBlocks {
             fogRadius = 3;
             researchCost = with(AridSectorItems.itemClay, 30, AridSectorItems.aluminium, 8);
         }};
+        aluminiumNode = new PowerNode("aluminium-node"){{
+            requirements(Category.power, with(AridSectorItems.aluminium, 3));
+            maxNodes = 12;
+            laserRange = 8;
+            underBullets = true;
+            crushFragile = true;
+        }};
+
+        aluminiumBattery = new Battery("aluminium-battery"){{
+            requirements(Category.power, with(AridSectorItems.aluminium, 5, Items.silicon, 2));
+            consumePowerBuffered(2400f);
+            baseExplosiveness = 1f;
+        }};
+
+        aluminiumDiode = new PowerDiode("aluminium-diode"){{
+            requirements(Category.power, with(AridSectorItems.aluminium, 5, Items.silicon, 2));
+        }};
         // Liquid
         ventRig = new AttributeCrafter("vent-rig"){{
             requirements(Category.liquid, with(AridSectorItems.itemClay, 30, Items.silicon, 8));
@@ -290,6 +308,51 @@ public class AridSectorBlocks {
             outputLiquid = new LiquidStack(Liquids.oil, 12f / 60f);
             liquidCapacity = 60f;
         }};
+
+        drainway = new Conduit("drainway"){{
+            requirements(Category.liquid, with(Items.silicon, 1));
+            botColor = Color.valueOf("322d3a");
+            leaks = true;
+            liquidCapacity = 50f;
+            liquidPressure = 1.03f;
+            health = 40;
+            underBullets = true;
+            explosivenessScale = flammabilityScale = 20f/50f;
+        }};
+
+
+        drainwayJunction = new LiquidJunction("drainway-junction"){{
+            requirements(Category.liquid, with(Items.silicon, 3));
+            health = 70;
+            ((Conduit)drainway).junctionReplacement = this;
+            solid = false;
+            underBullets = true;
+        }};
+
+        drainwayBridge = new DirectionLiquidBridge("drainway-bridge"){{
+            requirements(Category.liquid, with(Items.silicon, 8, AridSectorItems.aluminium, 3));
+            range = 4;
+            hasPower = false;
+            liquidCapacity = 40f;
+            underBullets = true;
+            health = 70;
+            explosivenessScale = flammabilityScale = 20f/120f;
+            floating = true;
+
+            ((Conduit)drainway).rotBridgeReplacement = this;
+        }};
+
+        drainwayRouter = new LiquidRouter("drainway-router"){{
+            requirements(Category.liquid, with(Items.silicon, 6));
+            liquidCapacity = 80f;
+            liquidPadding = 3f/4f;
+            underBullets = true;
+            solid = false;
+            health = 70;
+
+            explosivenessScale = flammabilityScale = 40f/150f;
+        }};
+
         // Turrets
         amp = new ItemTurret("amp"){{
             requirements(Category.turret, with(AridSectorItems.aluminium, 80, AridSectorItems.itemClay, 60, Items.silicon, 120));
