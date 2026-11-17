@@ -409,12 +409,12 @@ public class AridSectorBlocks {
             ammoPerShot = 2;
             shoot = new ShootBarrel(){{
                 barrels = new float[]{
-                        -3, 5f, 0,
-                        3, 5f, 0
+                        -3, -2f, 0,
+                        3, -2f, 0
                 };
                 shots = 2;
             }};
-            drawer = new DrawTurret("roadway-"){{
+            drawer = new DrawTurret("resilient-"){{
                 parts.addAll(
                         new RegionPart("-barrel"){{
                             progress = PartProgress.recoil;
@@ -426,7 +426,7 @@ public class AridSectorBlocks {
                         new RegionPart("-blade"){{
                             progress = PartProgress.warmup;
                             under = false;
-                            moveRot = 12f;
+                            moveRot = -8f;
                             mirror = true;
                         }}
                 );
@@ -526,7 +526,7 @@ public class AridSectorBlocks {
                                     stroke(e.fout() * 3f);
                                     Lines.circle(e.x, e.y, rad);
 
-                                    int points = 3;
+                                    int points = 6;
                                     for(int i = 0; i < points; i++){
                                         float angle = i* 360f / points;
                                         //for(int s : Mathf.zeroOne){
@@ -550,7 +550,7 @@ public class AridSectorBlocks {
             shootSound = Sounds.door;
             shake = 1f;
             ammoPerShot = 3;
-            drawer = new DrawTurret("roadway-"){{
+            drawer = new DrawTurret("resilient-"){{
                 parts.addAll(
                         new RegionPart("-side"){{
                             progress = PartProgress.warmup;
