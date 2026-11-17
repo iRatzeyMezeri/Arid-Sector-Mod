@@ -53,9 +53,11 @@ public class AridSectorBlocks {
     ventRig, drainway, drainwayJunction, drainwayRouter, drainwayBridge,
     // Turrets
     amp, atmos, centigrade, hertz,
-    // Units
+    // Crafting
+    biomaterialRestorationBed,
     // Defense
     brittleWall, largeBrittleWall, carapaceWall, largeCarapaceWall,
+    // Payload
     // Effect
     coreOccupation;
 
@@ -566,13 +568,46 @@ public class AridSectorBlocks {
             reload = 70f;
             recoil = 2f;
             range = 156;
-            health = 520;
+            health = 720;
             rotateSpeed = 1.2f;
             targetAir = false;
 
             coolant = consume(new ConsumeLiquid(Liquids.water, 15f / 60f));
         }};
-        // Units
+        // Crafting
+        biomaterialRestorationBed = new GenericCrafter("biomaterial-reconstruction-bed"){{
+            requirements(Category.crafting, with(Items.silicon, 80, AridSectorItems.itemClay, 60, AridSectorItems.aluminium, 80));
+            hasItems = true;
+            liquidCapacity = 60f;
+            craftTime = 120f;
+            outputItem = new ItemStack(AridSectorItems.carapace, 2);
+            size = 3;
+            health = 240;
+            squareSprite = false;
+            hasPower = hasLiquids = true;
+            craftEffect = Fx.circleColorSpark;
+            updateEffect = Fx.smeltsmoke;
+            drawer = new DrawMulti(new DrawRegion("-bottom"),
+                    new DrawBubbles(Color.valueOf("9240b3")){{
+                        sides = 10;
+                        recurrence = 3f;
+                        spread = 6;
+                        radius = 1.5f;
+                        amount = 20;
+                    }},
+                    new DrawDefault(),
+                    new DrawGlowRegion("-glow"){{
+                        color = Color.valueOf("d57fe2");
+                        alpha = 0.5f;
+                        glowIntensity = 0.3f;
+                        glowScale = 6f;
+                    }});
+
+            consumeLiquid(Liquids.oil, 18f/60f);
+            consumePower(180f/60f);
+            consumeItem(Items.silicon, 5);
+        }};
+        // Payload
         // Defense
         brittleWall = new Wall("brittle-wall"){{
             requirements(Category.defense, with(AridSectorItems.itemClay, 8));
@@ -586,11 +621,11 @@ public class AridSectorBlocks {
         }};
         carapaceWall = new Wall("carapace-wall"){{
             requirements(Category.defense, with(AridSectorItems.carapace, 4));
-            health = 140;
+            health = 180;
         }};
         largeCarapaceWall = new Wall("large-carapace-wall"){{
             requirements(Category.defense, with(AridSectorItems.carapace, 16));
-            health = 520;
+            health = 720;
             size = 2;
         }};
         // Effect
