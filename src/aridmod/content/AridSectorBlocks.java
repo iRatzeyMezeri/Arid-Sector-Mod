@@ -49,7 +49,7 @@ public class AridSectorBlocks {
     // Mining
     clayGrinder, hydrocarbonBore, clayExtractor,
     // Power
-    ventDelver, aluminiumNode, aluminiumBattery, aluminiumDiode,
+    ventDelver, aluminiumNode, aluminiumBattery, aluminiumDiode, naturalFuelGenerator,
     // Liquid
     ventRig, drainway, drainwayJunction, drainwayRouter, drainwayBridge,
     // Turrets
@@ -290,6 +290,23 @@ public class AridSectorBlocks {
 
         aluminiumDiode = new PowerDiode("aluminium-diode"){{
             requirements(Category.power, with(AridSectorItems.aluminium, 5, Items.silicon, 2));
+        }};
+
+        naturalFuelGenerator = new ConsumeGenerator("natural-fuel-generator"){{
+            requirements(Category.power, with(AridSectorItems.aluminium, 80, Items.silicon, 60, AridSectorItems.carapace, 40));
+            powerProduction = 600f/60f;
+            itemDuration = 60f;
+            hasLiquids = true;
+            hasItems = true;
+            size = 3;
+            ambientSound = Sounds.loopDifferential;
+            generateEffect = Fx.turbinegenerate;
+            ambientSoundVolume = 0.12f;
+
+            drawer = new DrawMulti(new DrawRegion("-bottom"), new DrawLiquidRegion(Liquids.oil), new DrawDefault(), new DrawArcSmelt(), new DrawGlowRegion("-glow"){{color = ASPal.accentedL;}});
+
+            consumeItem(AridSectorItems.aluminium);
+            consumeLiquid(Liquids.oil, 18f/60f);
         }};
         // Liquid
         ventRig = new AttributeCrafter("vent-rig"){{
