@@ -51,7 +51,7 @@ public class AridSectorBlocks {
     // Power
     ventDelver, aluminiumNode, aluminiumBattery, aluminiumDiode, naturalFuelGenerator,
     // Liquid
-    ventRig, drainway, drainwayJunction, drainwayRouter, drainwayBridge,
+    ventRig, drainway, drainwayJunction, drainwayRouter, drainwayBridge, resilientLiquidContainer,
     // Turrets
     amp, atmos, centigrade, hertz,
     // Crafting
@@ -60,7 +60,7 @@ public class AridSectorBlocks {
     brittleWall, largeBrittleWall, carapaceWall, largeCarapaceWall,
     // Payload
     // Effect
-    coreOccupation;
+    coreOccupation, resilientContainer;
 
 
     public static void load(){
@@ -267,6 +267,7 @@ public class AridSectorBlocks {
             size = 3;
             ambientSound = Sounds.loopHum;
             ambientSoundVolume = 0.06f;
+            squareSprite = false;
 
             drawer = new DrawMulti(new DrawDefault(), new DrawBlurSpin("-rotator", 0.6f * 9f){{blurThresh = 0.01f;}},  new DrawRegion("-top"));
 
@@ -327,6 +328,7 @@ public class AridSectorBlocks {
             itemCapacity = 0;
             outputLiquid = new LiquidStack(Liquids.oil, 12f / 60f);
             liquidCapacity = 60f;
+            squareSprite = false;
         }};
 
         drainway = new Conduit("drainway"){{
@@ -371,6 +373,16 @@ public class AridSectorBlocks {
             health = 70;
 
             explosivenessScale = flammabilityScale = 40f/150f;
+        }};
+
+        resilientLiquidContainer = new LiquidRouter("resilient-liquid-container"){{
+            requirements(Category.liquid, with(Items.silicon,10 , AridSectorItems.itemClay, 10));
+            liquidCapacity = 800f;
+            size = 2;
+            liquidPadding = 6f / 4f;
+            solid = true;
+            health = 420;
+            squareSprite = false;
         }};
 
         // Turrets
@@ -658,6 +670,14 @@ public class AridSectorBlocks {
             unitCapModifier = 6;
             squareSprite = false;
             unitType = AridSectorUnitTypes.tenant;
+        }};
+
+        resilientContainer = new StorageBlock("resilient-container"){{
+            requirements(Category.effect, with(AridSectorItems.itemClay, 60, Items.silicon, 40));
+            size = 2;
+            itemCapacity = 400;
+            health = 480;
+            squareSprite = false;
         }};
 
 }}
