@@ -136,7 +136,7 @@ public class AridSectorBlocks {
             clumpSoil.asFloor().decoration = this;
         }};
         siliconRemains = new Prop("silicon-remains"){{
-            variants = 2;
+            variants = 3;
             decayedSand.asFloor().decoration = this;
             decayedDust.asFloor().decoration = this;
         }};
