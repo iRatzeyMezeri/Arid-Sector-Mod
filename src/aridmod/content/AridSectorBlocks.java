@@ -22,6 +22,7 @@ import mindustry.world.blocks.liquid.*;
 import mindustry.world.blocks.power.*;
 import mindustry.world.blocks.production.*;
 import mindustry.world.blocks.storage.*;
+import mindustry.world.blocks.units.UnitFactory;
 import mindustry.world.consumers.*;
 import mindustry.world.draw.*;
 import mindustry.world.meta.*;
@@ -59,6 +60,7 @@ public class AridSectorBlocks {
     // Defense
     brittleWall, largeBrittleWall, carapaceWall, largeCarapaceWall,
     // Payload
+    serfConstructor, pioneerConstructor,
     // Effect
     coreOccupation, resilientContainer;
 
@@ -638,6 +640,26 @@ public class AridSectorBlocks {
             consumeItem(Items.silicon, 5);
         }};
         // Payload
+        serfConstructor = new UnitFactory("serf-constructor"){{
+            requirements(Category.units, with(AridSectorItems.itemClay, 80, Items.silicon, 100, AridSectorItems.aluminium, 60));
+            size = 3;
+            configurable = false;
+            plans.add(new UnitPlan(AridSectorUnitTypes.serf, 60f * 40f, with(Items.silicon, 45, AridSectorItems.aluminium, 20)));
+            researchCostMultiplier = 0.2f;
+            regionSuffix = "-resilient";
+            fogRadius = 3;
+            consumePower(150f/60f);
+        }};
+        pioneerConstructor = new UnitFactory("pioneer-constructor"){{
+            requirements(Category.units, with(AridSectorItems.itemClay, 50, Items.silicon, 80, AridSectorItems.carapace, 40));
+            size = 3;
+            configurable = false;
+            plans.add(new UnitPlan(AridSectorUnitTypes.pioneer, 60f * 25f, with(Items.silicon, 45, AridSectorItems.carapace, 10)));
+            researchCostMultiplier = 0.2f;
+            regionSuffix = "-resilient";
+            fogRadius = 3;
+            consumePower(150f/60f);
+        }};
         // Defense
         brittleWall = new Wall("brittle-wall"){{
             requirements(Category.defense, with(AridSectorItems.itemClay, 8));
