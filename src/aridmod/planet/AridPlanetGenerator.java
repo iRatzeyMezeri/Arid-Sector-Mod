@@ -7,7 +7,7 @@ import arc.util.noise.*;
 import mindustry.content.Blocks;
 import mindustry.maps.generators.PlanetGenerator;
 import mindustry.world.Block;
-import aridmod.content.AridSectorBlocks.*;
+import aridmod.content.AridSectorBlocks;
 
 public class AridPlanetGenerator extends PlanetGenerator {
     public float heightScl = 1f, octaves = 8, persistence = 0.7f, heightPow = 3f, heightMult = 2.2f;
@@ -28,13 +28,15 @@ public class AridPlanetGenerator extends PlanetGenerator {
         if (height < 0.01f) {
             block = Blocks.slag;
         } else if (height < 0.05f) {
-            block = Blocks.sand;
+            block = AridSectorBlocks.decayedSand;
         } else if (height < 0.13f) {
-            block = Blocks.redStone;
+            block = AridSectorBlocks.clay;
         } else if (height < 0.24) {
-            block = Blocks.carbonStone;
+            block = AridSectorBlocks.flint;
+        } else if (height < 0.27) {
+            block = AridSectorBlocks.navystone;
         } else {
-            block = Blocks.shale;
+            block = AridSectorBlocks.tealstone;
         }
         out.set(block.mapColor).a(1f - block.albedo);
     }

@@ -8,6 +8,7 @@ import mindustry.content.*;
 import mindustry.game.Team;
 import mindustry.graphics.g3d.*;
 import mindustry.type.*;
+import mindustry.world.meta.Attribute;
 import mindustry.world.meta.Env;
 
 public class AridSectorPlanets {
@@ -33,7 +34,6 @@ public class AridSectorPlanets {
             allowWaves = true;
             prebuildBase = false;
             defaultCore = AridSectorBlocks.coreOccupation;
-
             defaultEnv = Env.oxygen | Env.terrestrial;
 
             orbitSpacing = 1;
@@ -53,7 +53,9 @@ public class AridSectorPlanets {
 
             ruleSetter = r -> {
                 r.waveTeam = Team.crux;
-//                r.showSpawns = true;
+                r.hideSpawns = false;
+                r.allowCoreUnloaders = false;
+                r.onlyDepositCore = true;
                 r.teams.get(r.waveTeam).rtsAi = true;
             };
         }};

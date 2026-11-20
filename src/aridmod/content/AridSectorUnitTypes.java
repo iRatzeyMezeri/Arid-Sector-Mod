@@ -283,6 +283,7 @@ public class AridSectorUnitTypes {
                 reload = 120f;
                 shake = 1f;
                 cooldownTime = 60f;
+                targetAir = false;
 
                 bullet = new ArtilleryBulletType(3f, 40){{
                     lifetime = 70f;
@@ -293,6 +294,7 @@ public class AridSectorUnitTypes {
                     frontColor = ASPal.electricL;
                     hitSound = Sounds.none;
                     width = height = 7f;
+                    collidesAir = false;
 
                     lightColor = trailColor = backColor = ASPal.electricM;
                     lightRadius = 8f;
@@ -331,7 +333,8 @@ public class AridSectorUnitTypes {
                                 sizeFrom = 0f;
                                 sizeTo = 16f;
                             }},
-                            Fx.hitSquaresColor
+                            Fx.hitSquaresColor,
+                            Fx.hitBulletColor
                     );
                 }};
             }});

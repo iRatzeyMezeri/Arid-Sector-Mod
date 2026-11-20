@@ -35,7 +35,7 @@ public class AridSectorBlocks {
     public static Block
             // Environment
     // Floors
-    navystone, flint, gravel, clay, roughClay, clumpSoil, decayedSand, decayedDust, tealstone, taintedTealstone, purpurite, floorSolvent,
+    navystone, flint, gravel, clay, roughClay, clumpSoil, decayedSand, decayedDust, tealstone, taintedTealstone, purpurite, purpuricDirt, floorSolvent,
     // Walls
     navystoneWall, flintWall, clayWall, clumpSoilWall, decayedSandWall, tealstoneWall, taintedTealstoneWall, purpuriteWall,
     // Boulders
@@ -101,8 +101,12 @@ public class AridSectorBlocks {
         purpurite = new Floor("purpurite"){{
             variants = 3;
         }};
+        purpuricDirt = new Floor("purpuric-dirt"){{
+            variants = 3;
+        }};
         floorSolvent = new Floor("floor-solvent"){{
             liquidDrop = AridSectorLiquids.solvent;
+            variants = 2;
         }};
         navystoneWall = new StaticWall("navystone-wall"){{
             variants = 2;
