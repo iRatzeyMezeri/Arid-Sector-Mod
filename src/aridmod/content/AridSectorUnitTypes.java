@@ -26,6 +26,9 @@ import mindustry.type.weapons.*;
 import aridmod.*;
 import aridmod.ASPal.*;
 
+import static arc.graphics.g2d.Draw.color;
+import static arc.graphics.g2d.Lines.stroke;
+
 public class AridSectorUnitTypes {
 
     public static UnitType
@@ -35,6 +38,8 @@ public class AridSectorUnitTypes {
             pioneer,
             //Aerial
             thriller,
+            // Mech
+            bulk,
             //Core
             tenant;
 
@@ -49,6 +54,7 @@ public class AridSectorUnitTypes {
             stepSoundVolume = 0.4f;
             outlineColor = ASPal.resilientD;
             range = 90f;
+            researchCostMultiplier = 0f;
 
             weapons.add(new Weapon("arid-sector-serf-laser-rifle"){{
                 reload = 36f;
@@ -104,7 +110,7 @@ public class AridSectorUnitTypes {
             range = 12f;
             faceTarget = true;
             fogRadius = 120f;
-
+            researchCostMultiplier = 0f;
             abilities.add(new MoveEffectAbility(0f, -7f, ASPal.biomaterialX, Fx.missileTrailShort, 4f){{
                 teamColor = false;
             }});
@@ -168,6 +174,7 @@ public class AridSectorUnitTypes {
             aiController = SuicideAI::new;
 
             speed = 1f;
+            researchCostMultiplier = 0f;
             hitSize = 12f;
             health = 40;
             range = 20f;
@@ -205,6 +212,127 @@ public class AridSectorUnitTypes {
                     fragBullets = 3;
                     fragOnHit = false;
                     fragOnDespawn = true;
+                }};
+            }});
+        }};
+        bulk = new ErekirUnitType("bulk"){{
+            constructor = LegsUnit::create;
+            drag = 0.1f;
+            speed = 0.6f;
+            hitSize = 12f;
+            health = 480;
+            armor = 4f;
+
+            lockLegBase = true;
+            legContinuousMove = true;
+            legGroupSize = 3;
+            legStraightness = 0.6f;
+            baseLegStraightness = 0.6f;
+            legMaxLength = 4f;
+            researchCostMultiplier = 0f;
+
+            stepSound = Sounds.walkerStepSmall;
+            stepSoundVolume = 0.4f;
+            stepSoundPitch = 1f;
+            hovering = true;
+
+            abilities.add(new ShieldArcAbility(){{
+                region = "arid-sector-bulk-shield";
+                radius = 13f;
+                angle = 82f;
+                regen = 15f / 60f;
+                cooldown = 60f * 6f;
+                max = 360f;
+                y = -8f;
+                width = 2f;
+                whenShooting = false;
+                chanceDeflect = 1f;
+            }});
+
+            rotateSpeed = 2.1f;
+            outlineColor = ASPal.resilientD;
+
+            legCount = 6;
+            legLength = 4f;
+            legForwardScl = 0.6f;
+            legMoveSpace = 3f;
+            rippleScale = 0.8f;
+            stepShake = 0.2f;
+            legExtension = -2f;
+            legBaseOffset = 6f;
+
+            legSplashDamage = 24;
+            legSplashRange = 8;
+            drownTimeMultiplier = 0.5f;
+
+            hovering = true;
+            shadowElevation = 0.4f;
+            groundLayer = Layer.legUnit;
+
+            weapons.add(new Weapon("arid-sector-bulk-cannon"){{
+                shootSound = Sounds.shootBreachCarbide;
+                mirror = false;
+                top = true;
+                rotate = true;
+                outlineColor = ASPal.resilientD;
+
+                x = 0f;
+                y = 1f;
+                shootY = 3f;
+                recoil = 1f;
+                reload = 120f;
+                shake = 1f;
+                cooldownTime = 60f;
+
+                bullet = new ArtilleryBulletType(3f, 40){{
+                    lifetime = 70f;
+                    shootEffect = Fx.shootScepterSecondary;
+                    smokeEffect = Fx.shootSmokeSquare;
+                    splashDamage = 120f;
+                    splashDamageRadius = 30f;
+                    frontColor = ASPal.electricL;
+                    hitSound = Sounds.none;
+                    width = height = 7f;
+
+                    lightColor = trailColor = backColor = ASPal.electricM;
+                    lightRadius = 8f;
+                    lightOpacity = 0.7f;
+
+                    trailWidth = 5f;
+                    trailLength = 20;
+                    despawnSound = Sounds.explosionAfflict;
+
+                    despawnEffect = hitEffect = new MultiEffect(
+                            new Effect(50f, 100f, e -> {
+                                float rad = 16f;
+                                Color ecol = frontColor;
+
+                                color(ecol);
+                                stroke(e.fout() * 3f);
+                                Lines.circle(e.x, e.y, rad);
+
+                                int points = 6;
+                                for (int i = 0; i < points; i++) {
+                                    float angle = i * 360f / points;
+                                    //for(int s : Mathf.zeroOne){
+                                    Drawf.tri(e.x + Angles.trnsx(angle, rad), e.y + Angles.trnsy(angle, rad), 6f, -6f * e.fout(), angle/* + s*180f*/);
+                                    //}
+                                }
+
+                                Fill.circle(e.x, e.y, 12f * e.fout());
+                                color();
+                                Fill.circle(e.x, e.y, 6f * e.fout());
+                                Drawf.light(e.x, e.y, rad * 1.6f, ecol, e.fout());
+                            }),
+                            new WaveEffect(){{
+                                colorFrom = colorTo = ASPal.electricL;
+                                strokeFrom = 0.2f;
+                                strokeTo = 2f;
+                                sizeFrom = 0f;
+                                sizeTo = 16f;
+                            }},
+                            Fx.hitSquaresColor
+                    );
                 }};
             }});
         }};
