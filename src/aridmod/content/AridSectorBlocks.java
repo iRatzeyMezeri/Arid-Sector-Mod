@@ -35,13 +35,13 @@ public class AridSectorBlocks {
     public static Block
             // Environment
     // Floors
-    navystone, flint, gravel, clay, roughClay, clumpSoil, decayedSand, decayedDust,
+    navystone, flint, gravel, clay, roughClay, clumpSoil, decayedSand, decayedDust, tealstone, taintedTealstone, purpurite, floorSolvent,
     // Walls
-    navystoneWall, flintWall, clayWall, clumpSoilWall, decayedSandWall,
+    navystoneWall, flintWall, clayWall, clumpSoilWall, decayedSandWall, tealstoneWall, taintedTealstoneWall, purpuriteWall,
     // Boulders
-    navystoneBoulder, flintBoulder, clayBoulder, clumpSoilBoulder, siliconRemains,
+    navystoneBoulder, flintBoulder, clayBoulder, clumpSoilBoulder, siliconRemains, tealstoneBoulder, taintedTealstoneBoulder, purpuriteBoulder,
     // Vents
-    navystoneVent, flintVent, clayVent, decayedVent,
+    navystoneVent, flintVent, clayVent, decayedVent, tealstoneVent, purpuriteVent,
     // Ores
     flintSilicon, soilSilicon, aluminiumWallOre, groundCobaltOre, wallCobaltOre,
             // Buildable
@@ -92,6 +92,18 @@ public class AridSectorBlocks {
         decayedDust = new Floor("decayed-dust"){{
             variants = 3;
         }};
+        tealstone = new Floor("tealstone"){{
+            variants = 3;
+        }};
+        taintedTealstone = new Floor("tainted-tealstone"){{
+            variants = 3;
+        }};
+        purpurite = new Floor("purpurite"){{
+            variants = 3;
+        }};
+        floorSolvent = new Floor("floor-solvent"){{
+            liquidDrop = AridSectorLiquids.solvent;
+        }};
         navystoneWall = new StaticWall("navystone-wall"){{
             variants = 2;
         }};
@@ -119,6 +131,15 @@ public class AridSectorBlocks {
         decayedSandWall = new StaticWall("decayed-sand-wall"){{
             variants = 2;
         }};
+        tealstoneWall = new StaticWall("tealstone-wall"){{
+            variants = 2;
+        }};
+        taintedTealstoneWall = new StaticWall("tainted-tealstone-wall"){{
+            variants = 2;
+        }};
+        purpuriteWall = new StaticWall("purpurite-wall"){{
+            variants = 2;
+        }};
         navystoneBoulder = new Prop("navystone-boulder"){{
             variants = 2;
             navystone.asFloor().decoration = this;
@@ -140,6 +161,18 @@ public class AridSectorBlocks {
             decayedSand.asFloor().decoration = this;
             decayedDust.asFloor().decoration = this;
         }};
+        tealstoneBoulder = new Prop("tealstone-boulder"){{
+            variants = 2;
+            tealstone.asFloor().decoration = this;
+        }};
+        taintedTealstoneBoulder = new Prop("tainted-tealstone-boulder"){{
+            variants = 2;
+            taintedTealstone.asFloor().decoration = this;
+        }};
+        purpuriteBoulder = new Prop("purpurite-boulder"){{
+            variants = 2;
+            purpurite.asFloor().decoration = this;
+        }};
         navystoneVent = new SteamVent("navystone-vent"){{
                 parent = blendGroup = navystone;
                 attributes.set(Attribute.steam, 1f);
@@ -154,6 +187,14 @@ public class AridSectorBlocks {
         }};
         decayedVent = new SteamVent("decayed-vent"){{
             parent = blendGroup = decayedDust;
+            attributes.set(Attribute.steam, 1f);
+        }};
+        tealstoneVent = new SteamVent("tealstone-vent"){{
+            parent = blendGroup = tealstone;
+            attributes.set(Attribute.steam, 1f);
+        }};
+        purpuriteVent = new SteamVent("purpurite-vent"){{
+            parent = blendGroup = purpurite;
             attributes.set(Attribute.steam, 1f);
         }};
         // Distribution

@@ -6,8 +6,11 @@ import mindustry.type.*;
 
 public class AridSectorLiquids {
     public static Liquid
-        meo;
+        solvent;
 
     public static void load() {
+        solvent = new Liquid("solvent"){{
+
+        }};
     }
 }
