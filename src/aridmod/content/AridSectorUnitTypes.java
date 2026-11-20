@@ -33,6 +33,8 @@ public class AridSectorUnitTypes {
             serf,
             //Hover
             pioneer,
+            //Aerial
+            thriller,
             //Core
             tenant;
 
@@ -162,6 +164,50 @@ public class AridSectorUnitTypes {
 
         }};
 
+        thriller = new UnitType("thriller"){{
+            aiController = SuicideAI::new;
+
+            speed = 1f;
+            hitSize = 12f;
+            health = 40;
+            range = 20f;
+            flying = true;
+            outlineColor = ASPal.resilientD;
+
+            setEnginesMirror(
+                    new UnitEngine(18 / 4f, -18 / 4f, 2.2f, 45f)
+            );
+
+            weapons.add(new Weapon(){{
+                shootOnDeath = true;
+                targetUnderBlocks = false;
+                reload = 24f;
+                shootCone = 180f;
+                ejectEffect = Fx.none;
+                shootSound = Sounds.explosionAfflict;
+                shootSoundVolume = 0.5f;
+                x = shootY = 0f;
+                mirror = false;
+                bullet = new BulletType(){{
+                    collidesTiles = false;
+                    collides = false;
+
+                    rangeOverride = 40f;
+                    hitEffect = Fx.shootSmokeSmite;
+                    speed = 0f;
+                    splashDamageRadius = 66f;
+                    instantDisappear = true;
+                    splashDamage = 360f;
+                    buildingDamageMultiplier = 0.4f;
+                    killShooter = true;
+                    hittable = false;
+                    collidesAir = true;
+                    fragBullets = 3;
+                    fragOnHit = false;
+                    fragOnDespawn = true;
+                }};
+            }});
+        }};
         tenant = new ErekirUnitType("tenant") {{
             coreUnitDock = true;
 
