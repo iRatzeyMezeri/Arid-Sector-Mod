@@ -282,7 +282,7 @@ public class AridSectorBlocks {
             researchCost = with(AridSectorItems.itemClay, 8);
         }};
         hydrocarbonBore = new BeamDrill("hydrocarbon-bore"){{
-            requirements(Category.production, with(AridSectorItems.itemClay, 40, AridSectorItems.aluminium, 15));
+            requirements(Category.production, with(AridSectorItems.itemClay, 30, AridSectorItems.aluminium, 15));
             consumePower(0.5f);
             drillTime = 320f;
 
@@ -297,7 +297,7 @@ public class AridSectorBlocks {
         }};
 
         clayExtractor = new WallCrafter("clay-extractor"){{
-            requirements(Category.production, with(AridSectorItems.itemClay, 25));
+            requirements(Category.production, with(AridSectorItems.itemClay, 12));
 
             drillTime = 480f;
             size = 2;
@@ -310,7 +310,7 @@ public class AridSectorBlocks {
         }};
         // Power
         ventDelver = new ThermalGenerator("vent-delver"){{
-            requirements(Category.power, with(AridSectorItems.itemClay, 30, AridSectorItems.aluminium, 8));
+            requirements(Category.power, with(AridSectorItems.itemClay, 20, AridSectorItems.aluminium, 8));
             attribute = Attribute.steam;
             group = BlockGroup.liquids;
             displayEfficiencyScale = 1f / 9f;
