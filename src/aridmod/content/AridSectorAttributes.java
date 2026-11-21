@@ -11,7 +11,7 @@ public class AridSectorAttributes {
 
     public static void setAttributes(){
         AridSectorBlocks.clayWall.attributes.set(Attribute.get("clay-concentration"), 2);
-        AridSectorBlocks.decayedSand.attributes.set(Attribute.get("clay-concentration"), 2);
+        AridSectorBlocks.decayedSandWall.attributes.set(Attribute.get("clay-concentration"), 2);
         AridSectorBlocks.flintWall.attributes.set(Attribute.get("clay-concentration"), 1.5f);
         AridSectorBlocks.clumpSoilWall.attributes.set(Attribute.get("clay-concentration"), 1.5f);
         AridSectorBlocks.flintSilicon.attributes.set(Attribute.get("clay-concentration"), 1f);
