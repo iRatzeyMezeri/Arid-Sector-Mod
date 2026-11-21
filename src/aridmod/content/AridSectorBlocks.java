@@ -446,7 +446,7 @@ public class AridSectorBlocks {
             Effect sfe = new MultiEffect(Fx.shootBigColor, Fx.colorSparkBig);
 
             ammo(
-                    AridSectorItems.aluminium, new BasicBulletType(6f, 25){{
+                    AridSectorItems.aluminium, new BasicBulletType(6f, 50){{
                         width = 9f;
                         hitSize = 7f;
                         height = 14f;
@@ -468,7 +468,7 @@ public class AridSectorBlocks {
                         fragOnHit = true;
                         fragOnAbsorb = true;
                         fragBullet = new LightningBulletType(){{
-                                damage = 7;
+                                damage = 8;
                                 lightningLength = 5;
                                 collidesAir = true;
                                 buildingDamageMultiplier = 0.4f;

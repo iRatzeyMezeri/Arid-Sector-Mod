@@ -56,6 +56,8 @@ public class AridSectorPlanets {
                 r.hideSpawns = false;
                 r.allowCoreUnloaders = false;
                 r.onlyDepositCore = true;
+                r.coreIncinerates = true;
+                r.coreCapture = true;
                 r.teams.get(r.waveTeam).rtsAi = true;
             };
         }};
