@@ -107,6 +107,12 @@ public class AridSectorBlocks {
         floorSolvent = new Floor("floor-solvent"){{
             liquidDrop = AridSectorLiquids.solvent;
             variants = 2;
+            speedMultiplier = 0.7f;
+            isLiquid = true;
+            drownTime = 200f;
+            cacheLayer = AridSectorCacheLayers.solvent;
+            albedo = 0.9f;
+            obstructsLight = true;
         }};
         navystoneWall = new StaticWall("navystone-wall"){{
             variants = 2;
@@ -155,6 +161,7 @@ public class AridSectorBlocks {
         clayBoulder = new Prop("clay-boulder"){{
             variants = 2;
             clay.asFloor().decoration = this;
+            roughClay.asFloor().decoration = this;
         }};
         clumpSoilBoulder = new Prop("clump-soil-boulder"){{
             variants = 2;
@@ -176,6 +183,7 @@ public class AridSectorBlocks {
         purpuriteBoulder = new Prop("purpurite-boulder"){{
             variants = 2;
             purpurite.asFloor().decoration = this;
+            purpuricDirt.asFloor().decoration = this;
         }};
         navystoneVent = new SteamVent("navystone-vent"){{
                 parent = blendGroup = navystone;

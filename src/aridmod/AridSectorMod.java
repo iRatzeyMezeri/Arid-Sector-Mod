@@ -36,6 +36,8 @@ public class AridSectorMod extends Mod{
         AridSectorAttributes.load();
         AridSectorUnitTypes.load();
         AridSectorItems.load();
+        AridSectorShaders.load();
+        AridSectorCacheLayers.load();
         AridSectorLiquids.load();
         AridSectorBlocks.load();
         AridSectorPlanets.load();
