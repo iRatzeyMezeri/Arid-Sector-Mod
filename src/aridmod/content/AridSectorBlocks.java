@@ -445,8 +445,11 @@ public class AridSectorBlocks {
             requirements(Category.turret, with(AridSectorItems.aluminium, 80, AridSectorItems.itemClay, 60, Items.silicon, 120));
             Effect sfe = new MultiEffect(Fx.shootBigColor, Fx.colorSparkBig);
 
+            consumesPower = true;
+            consumePower(30f/60f);
+            hasPower = true;
             ammo(
-                    AridSectorItems.aluminium, new BasicBulletType(6f, 50){{
+                    AridSectorItems.aluminium, new BasicBulletType(7f, 50){{
                         width = 9f;
                         hitSize = 7f;
                         height = 14f;
@@ -522,7 +525,7 @@ public class AridSectorBlocks {
             size = 3;
             reload = 70f;
             recoil = 2f;
-            range = 120;
+            range = 140;
             health = 520;
             rotateSpeed = 1.5f;
             researchCostMultiplier = 0.05f;
@@ -531,14 +534,14 @@ public class AridSectorBlocks {
         }};
 
         atmos = new ItemTurret("atmos"){{
-            requirements(Category.turret, with(AridSectorItems.carapace, 80, Items.silicon, 160));
+            requirements(Category.turret, with(AridSectorItems.carapace, 40, Items.silicon, 160));
             Effect sfe = new MultiEffect(Fx.shootSmokeSquare);
             ammo(
                     Items.silicon, new ArtilleryBulletType(3f, 12){{
                         width = 12f;
                         hitSize = 12f;
                         height = 18f;
-                        lifetime = 52f;
+                        lifetime = 64f;
                         shootEffect = sfe;
                         homingPower = 0.05f;
                         homingRange = 80f;
@@ -587,7 +590,7 @@ public class AridSectorBlocks {
                         width = 12f;
                         hitSize = 12f;
                         height = 18f;
-                        lifetime = 60f;
+                        lifetime = 72f;
                         rangeChange = 24f;
                         shootEffect = sfe;
                         smokeEffect = Fx.shootBigSmoke;
@@ -652,7 +655,7 @@ public class AridSectorBlocks {
             size = 3;
             reload = 70f;
             recoil = 2f;
-            range = 156;
+            range = 192;
             health = 720;
             rotateSpeed = 1.2f;
             targetAir = false;
