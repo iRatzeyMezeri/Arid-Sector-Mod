@@ -528,7 +528,7 @@ public class AridSectorBlocks {
             reload = 70f;
             recoil = 2f;
             range = 140;
-            health = 520;
+            health = 600;
             rotateSpeed = 1.5f;
             researchCostMultiplier = 0.05f;
 
@@ -658,7 +658,7 @@ public class AridSectorBlocks {
             reload = 70f;
             recoil = 2f;
             range = 192;
-            health = 720;
+            health = 960;
             rotateSpeed = 1.2f;
             targetAir = false;
 
@@ -743,7 +743,7 @@ public class AridSectorBlocks {
             requirements(Category.effect, with(AridSectorItems.itemClay, 800, Items.silicon, 800, AridSectorItems.carapace, 360));
             alwaysUnlocked = true;
             isFirstTier = true;
-            health = 960;
+            health = 2400;
             size = 4;
             absorbLasers = true;
             itemCapacity = 2000;

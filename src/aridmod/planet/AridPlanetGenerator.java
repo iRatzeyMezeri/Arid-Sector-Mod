@@ -27,15 +27,15 @@ public class AridPlanetGenerator extends PlanetGenerator {
         Block block;
         if (height < 0.015f) {
             block = Blocks.slag;
-        } else if (height < 0.04f) {
+        } else if (height < 0.06f) {
             block = AridSectorBlocks.decayedSand;
-        } else if (height < 0.08f) {
+        } else if (height < 0.1f) {
             block = AridSectorBlocks.clay;
-        } else if (height < 0.12f) {
+        } else if (height < 0.14f) {
             block = AridSectorBlocks.clumpSoil;
-        } else if (height < 0.2f) {
+        } else if (height < 0.22f) {
             block = AridSectorBlocks.flint;
-        } else if (height < 0.34f) {
+        } else if (height < 0.38f) {
             block = AridSectorBlocks.navystone;
         } else {
             block = AridSectorBlocks.tealstone;
