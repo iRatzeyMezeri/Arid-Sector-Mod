@@ -4,6 +4,7 @@ import arc.graphics.*;
 import arc.graphics.g2d.*;
 import arc.math.*;
 import aridmod.ASPal;
+import aridmod.world.blocks.distribution.FunctionalStackConveyor;
 import mindustry.content.*;
 import mindustry.entities.*;
 import mindustry.entities.bullet.*;
@@ -210,7 +211,7 @@ public class AridSectorBlocks {
             attributes.set(Attribute.steam, 1f);
         }};
         // Distribution
-        basicRoadway = new StackConveyor("basic-roadway"){{
+        basicRoadway = new FunctionalStackConveyor("basic-roadway"){{
             requirements(Category.distribution, with(AridSectorItems.itemClay, 2));
             health = 40;
             speed = 4f / 60f;
@@ -449,7 +450,7 @@ public class AridSectorBlocks {
             consumePower(30f/60f);
             hasPower = true;
             ammo(
-                    AridSectorItems.aluminium, new BasicBulletType(7f, 50){{
+                    AridSectorItems.aluminium, new BasicBulletType(7f, 72){{
                         width = 9f;
                         hitSize = 7f;
                         height = 14f;
@@ -553,7 +554,7 @@ public class AridSectorBlocks {
                         frontColor = Color.valueOf("767a84");
                         trailWidth = 3f;
                         trailLength = 10;
-                        splashDamage = 96;
+                        splashDamage = 144;
                         splashDamageRadius = 36;
                         hitEffect = despawnEffect = new MultiEffect(
                                 new Effect(50f, 100f, e -> {
@@ -600,7 +601,7 @@ public class AridSectorBlocks {
                         frontColor = ASPal.biomaterialL;
                         trailWidth = 3f;
                         trailLength = 10;
-                        splashDamage = 134;
+                        splashDamage = 192;
                         collidesAir = false;
                         splashDamageRadius = 24;
                         hitEffect = despawnEffect = new MultiEffect(
