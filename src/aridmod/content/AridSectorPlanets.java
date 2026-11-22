@@ -26,7 +26,7 @@ public class AridSectorPlanets {
 
             alwaysUnlocked = true;
             accessible = true;
-            allowLaunchToNumbered = false;
+            allowLaunchToNumbered = true;
             allowLaunchLoadout = false;
             allowSectorInvasion = false;
             startSector = 176;

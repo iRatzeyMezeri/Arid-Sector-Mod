@@ -25,15 +25,17 @@ public class AridPlanetGenerator extends PlanetGenerator {
     public void getColor(Vec3 position, Color out) {
         float height = getHeight(position);
         Block block;
-        if (height < 0.01f) {
+        if (height < 0.015f) {
             block = Blocks.slag;
-        } else if (height < 0.05f) {
+        } else if (height < 0.04f) {
             block = AridSectorBlocks.decayedSand;
-        } else if (height < 0.13f) {
+        } else if (height < 0.08f) {
             block = AridSectorBlocks.clay;
-        } else if (height < 0.24) {
+        } else if (height < 0.12f) {
+            block = AridSectorBlocks.clumpSoil;
+        } else if (height < 0.2f) {
             block = AridSectorBlocks.flint;
-        } else if (height < 0.27) {
+        } else if (height < 0.34f) {
             block = AridSectorBlocks.navystone;
         } else {
             block = AridSectorBlocks.tealstone;
