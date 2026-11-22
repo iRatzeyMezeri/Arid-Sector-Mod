@@ -17,7 +17,7 @@ public class AridSectorStatusEffects {
     public static void load(){
         safe = new StatusEffect("safe"){{
             color = Pal.heal;
-            speedMultiplier = 1.6f;
+            speedMultiplier = 1.2f;
             healthMultiplier = 1.2f;
         }};
     }

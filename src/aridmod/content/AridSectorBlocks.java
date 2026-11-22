@@ -5,6 +5,7 @@ import arc.graphics.g2d.*;
 import arc.math.*;
 import aridmod.ASPal;
 import aridmod.world.blocks.distribution.FunctionalStackConveyor;
+import aridmod.world.blocks.effect.PositiveBeaconCore;
 import mindustry.content.*;
 import mindustry.entities.*;
 import mindustry.entities.bullet.*;
@@ -738,7 +739,7 @@ public class AridSectorBlocks {
             size = 2;
         }};
         // Effect
-        coreOccupation = new CoreBlock("core-occupation"){{
+        coreOccupation = new PositiveBeaconCore("core-occupation"){{
             requirements(Category.effect, with(AridSectorItems.itemClay, 800, Items.silicon, 800, AridSectorItems.carapace, 360));
             alwaysUnlocked = true;
             isFirstTier = true;
@@ -749,6 +750,11 @@ public class AridSectorBlocks {
             unitCapModifier = 6;
             squareSprite = false;
             unitType = AridSectorUnitTypes.tenant;
+
+            status = AridSectorStatusEffects.safe;
+            statusDuration = 10f;
+            range = 240f;
+            baseOpacity = 0.8f;
         }};
 
         resilientContainer = new StorageBlock("resilient-container"){{
