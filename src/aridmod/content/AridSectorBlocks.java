@@ -115,6 +115,8 @@ public class AridSectorBlocks {
             cacheLayer = AridSectorCacheLayers.solvent;
             albedo = 0.9f;
             obstructsLight = true;
+            status = AridSectorStatusEffects.dissolving;
+            statusDuration = 60f;
         }};
         navystoneWall = new StaticWall("navystone-wall"){{
             variants = 2;

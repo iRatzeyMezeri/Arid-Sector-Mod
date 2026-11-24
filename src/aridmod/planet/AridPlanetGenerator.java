@@ -35,7 +35,7 @@ public class AridPlanetGenerator extends PlanetGenerator {
             block = AridSectorBlocks.clumpSoil;
         } else if (height < 0.22f) {
             block = AridSectorBlocks.flint;
-        } else if (height < 0.38f) {
+        } else if (height < 0.38) {
             block = AridSectorBlocks.navystone;
         } else {
             block = AridSectorBlocks.tealstone;
