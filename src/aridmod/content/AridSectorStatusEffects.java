@@ -44,28 +44,14 @@ public class AridSectorStatusEffects {
             intervalDamage = 4;
             color = Color.valueOf("ff6e63");
             effectChance = 0.05f;
-            effect = new MultiEffect(
-                    new Effect(8, e -> {
+            effect = new Effect(8, e -> {
                         color(e.color, Color.gray, e.fin());
                         float w = 1f + 4 * e.fout();
                         Drawf.tri(e.x, e.y, w, 15f * e.fout(), e.rotation);
-                    }),
-                    new Effect(8, e -> {
-                        color(e.color, Color.gray, e.fin());
-                        float w = 1f + 4 * e.fout();
                         Drawf.tri(e.x, e.y, w, 15f * e.fout(), e.rotation + 90f);
-                    }),
-                    new Effect(8, e -> {
-                        color(e.color, Color.gray, e.fin());
-                        float w = 1f + 4 * e.fout();
                         Drawf.tri(e.x, e.y, w, 15f * e.fout(), e.rotation + 90f + 90f);
-                    }),
-                    new Effect(8, e -> {
-                        color(e.color, Color.gray, e.fin());
-                        float w = 1f + 4 * e.fout();
                         Drawf.tri(e.x, e.y, w, 15f * e.fout(), e.rotation  + 90f + 90f + 90f);
-                    })
-                );
+            });
             outline = false;
         }};
     }
